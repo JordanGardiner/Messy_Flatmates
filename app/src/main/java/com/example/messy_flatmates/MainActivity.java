@@ -2,6 +2,12 @@ package com.example.messy_flatmates;
 
 import android.os.Bundle;
 
+import com.example.messy_flatmates.Fragments.Calendar_fragment;
+import com.example.messy_flatmates.Fragments.Create_task_fragment;
+import com.example.messy_flatmates.Fragments.Group_fragment;
+import com.example.messy_flatmates.Fragments.Leaderboard_fragment;
+import com.example.messy_flatmates.Fragments.My_task_fragment;
+import com.example.messy_flatmates.Fragments.Settings_fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -18,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.Menu;
 
@@ -84,19 +91,25 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentManager fragment_manager = getSupportFragmentManager();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        Calendar_fragment calendar_fragment = new Calendar_fragment();
+        //alendar_fragment.setArguments(bundle); no bundle yet, bundles used to pass info between fragments
 
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_tools) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_calendar) {
+            fragment_manager.beginTransaction().replace(R.id.content_frame, calendar_fragment).commit();
+        } else if (id == R.id.nav_create_task) {
+            fragment_manager.beginTransaction().replace(R.id.content_frame, new Create_task_fragment()).commit();
+        } else if (id == R.id.nav_my_tasks) {
+            fragment_manager.beginTransaction().replace(R.id.content_frame, new My_task_fragment()).commit();
+        } else if (id == R.id.nav_group) {
+            fragment_manager.beginTransaction().replace(R.id.content_frame, new Group_fragment()).commit();
+        } else if (id == R.id.nav_leaderboard) {
+            fragment_manager.beginTransaction().replace(R.id.content_frame, new Leaderboard_fragment()).commit();
+        } else if (id == R.id.nav_settings) {
+            fragment_manager.beginTransaction().replace(R.id.content_frame, new Settings_fragment()).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
