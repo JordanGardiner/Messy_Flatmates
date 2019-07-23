@@ -50,21 +50,21 @@ public class Calendar_fragment extends Fragment {
             }
         });
 
-//        Button createUser = myView.findViewById(R.id.create_user_btn);
-//        createUser.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Create_user_fragment create_user_fragment = new Create_user_fragment();
-//                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, create_user_fragment).commit();
-//
-//            }
-//        });
+        Button createUser = myView.findViewById(R.id.createUserBtn);
+        createUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Create_user_fragment create_user_fragment = new Create_user_fragment();
+                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, create_user_fragment).commit();
+
+            }
+        });
 
         TextView statusBox = myView.findViewById(R.id.DbStatus);
         try {
-            statusBox.setText(response.get("responseBody").toString());
+            statusBox.setText((response.get("responseBody")).toString());
         }catch(JSONException e){
-
+            System.out.println(e.getMessage());
         }
 
         return myView;

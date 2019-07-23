@@ -27,6 +27,8 @@ import org.json.JSONObject;
 
 public class Create_user_fragment extends Fragment {
 
+    Extra_Code wrapper = new Extra_Code();
+
     /**
      * TODO: 23/07/2019 Create checks to stop DOB going over day and month limits
      * @param inflater
@@ -95,11 +97,35 @@ public class Create_user_fragment extends Fragment {
                 System.out.println("testing json object");
                 try{
                     String resCode = response.get("responseCode").toString();
+                    String resBody = response.get("responseBody").toString();
                     if (resCode.equals("201")) {
+                        AlertDialog.Builder builder = wrapper.createDialog(getContext(), "Success!", "An account has been created");
                         System.out.println("It worked!");
-                    } else {
+                        System.out.println(resBody);
+                        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Calendar_fragment calendar_fragment = new Calendar_fragment();
+                                        (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, calendar_fragment).commit();
+
+                                    }
+                                });
+                        builder.show();
+
+                    } else if(resCode.equals("408")) {
+                        (wrapper.createDialog(getContext(), "408", "Connection error, " +
+                                "please check you are connected to the internet and retry")).show();
+
                         System.out.println("unlucky !");
+                    } else if(resCode.equals("409")){
+                        (wrapper.createDialog(getContext(), resCode, resBody)).show();
+                        myView.findViewById(R.id.email_editText5).setFocusable(true);
+
+                        System.out.println("unlucky ! user already exists");
+                    } else {
+                        System.out.println("IDFK");
                     }
+
                     System.out.println(resCode);
 
                 } catch (JSONException e){
