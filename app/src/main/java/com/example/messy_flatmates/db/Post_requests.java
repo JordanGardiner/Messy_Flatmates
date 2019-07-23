@@ -25,4 +25,18 @@ public class Post_requests extends Connections {
 
 
     }
+
+    public JSONObject Login(String email, String password){
+        JSONObject loginJSON = new JSONObject();
+        try{
+            loginJSON.put("email", email);
+            loginJSON.put("password", password);
+
+        } catch (JSONException e){
+            System.out.println(e.getMessage());
+        }
+        return SendPostRequest("/api/user/login", loginJSON);
+
+    }
 }
+
