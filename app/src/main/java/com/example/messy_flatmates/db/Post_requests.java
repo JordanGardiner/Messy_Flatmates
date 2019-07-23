@@ -7,7 +7,7 @@ import org.json.JSONTokener;
 
 public class Post_requests extends Connections {
 
-    public String Create_user(String firstName, String lastName, String email, String password, String dob){
+    public JSONObject Create_user(String firstName, String lastName, String email, String password, String dob){
         JSONObject jsonBody = new JSONObject();
         try {
 

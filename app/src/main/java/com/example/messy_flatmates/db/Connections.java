@@ -1,5 +1,6 @@
 package com.example.messy_flatmates.db;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -14,19 +15,15 @@ import java.net.URL;
 public class Connections {
 
     private String url = "http://121.99.223.175";
-    private String port = ":3008";
-    private String requestType = "";
-    private String requestString = "";
+    private String port = ":3009";
+    private String responseCode = "";
+    private String responseBody = "";
     public Connections(){
-
-
 
     }
 
-
-    public String SendGetRequest(final String requestString){
+    public JSONObject SendGetRequest(final String requestString){
         final StringBuffer response = new StringBuffer();
-
         try {
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -38,12 +35,7 @@ public class Connections {
                         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
                         con.setRequestMethod("GET");
-
-                        //add request header
-
-                        //con.setRequestProperty("User-Agent");
-
-                        int responseCode = con.getResponseCode();
+                        setResponseCode(Integer.toString(con.getResponseCode()));
                         System.out.println("\nSending 'GET' request to URL : " + url);
                         System.out.println("Response Code : " + responseCode);
 
@@ -54,7 +46,6 @@ public class Connections {
                         while ((inputLine = reader.readLine()) != null) {
                             response.append(inputLine);
                         }
-
 
                         reader.close();
 
@@ -82,12 +73,20 @@ public class Connections {
         }
 
         System.out.println(response.toString());
-        return (response.toString());
+        JSONObject responseObject = new JSONObject();
+        try{
+        responseObject.put("responseCode", responseCode);
+        responseObject.put("responseData", response);
+        } catch (JSONException e){
+            System.out.println(e.getMessage());
+        }
+
+        return responseObject;
 
     }
 
 
-    public String SendPostRequest(final String requestString, final JSONObject jsonBody){
+    public JSONObject SendPostRequest(final String requestString, final JSONObject jsonBody){
         final StringBuffer response = new StringBuffer();
 
         try {
@@ -109,7 +108,6 @@ public class Connections {
                         con.setDoOutput(true);
 
                         String jsonString = jsonBody.toString();
-                        System.out.println(jsonString);
 
                         try(OutputStream os = con.getOutputStream()) {
                             byte[] input = jsonString.getBytes("utf-8");
@@ -123,8 +121,11 @@ public class Connections {
                             while ((responseLine = br.readLine()) != null) {
                                 response.append(responseLine.trim());
                             }
-                            System.out.println(response.toString());
+                            System.out.println(response);
+                            setResponseBody(response.toString());
+
                         }
+                        setResponseCode(Integer.toString(con.getResponseCode()));
 
                     } catch (MalformedURLException e) {
                         System.out.println("MalformedURLException");
@@ -147,9 +148,28 @@ public class Connections {
             System.out.println(e.getMessage());
         }
 
-        System.out.println(response.toString());
-        return (response.toString());
+        JSONObject responseJSON = new JSONObject();
+        try{
+            responseJSON.put("responseCode", responseCode);
+            responseJSON.put("responseBody", responseBody);
+        } catch (JSONException e){
+            System.out.println("definitely here");
+            System.out.println(e.getMessage());
+        }
 
+        System.out.println(response.toString());
+
+
+        return responseJSON;
+
+    }
+
+
+    private void setResponseCode(String code){
+        responseCode = code;
+    }
+    private void setResponseBody(String responseString){
+        responseBody = responseString;
     }
 
 }

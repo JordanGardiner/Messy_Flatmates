@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Connections;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Calendar_fragment extends Fragment {
 
     private View myView;
@@ -31,12 +34,15 @@ public class Calendar_fragment extends Fragment {
 
         Connections connect = new Connections();
 
-        String responce = connect.SendGetRequest( "/");
+        JSONObject response = connect.SendGetRequest( "/");
 
 
         TextView statusBox = myView.findViewById(R.id.DbStatus);
-        statusBox.setText(responce);
+        try {
+            statusBox.setText(response.getJSONObject("responseBody").toString());
+        }catch(JSONException e){
 
+        }
         return myView;
     }
 }

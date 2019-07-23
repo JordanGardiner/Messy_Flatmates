@@ -33,6 +33,8 @@ import android.view.inputmethod.InputMethodManager;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Bundle bundle = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,9 +99,8 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragment_manager = getSupportFragmentManager();
 
         Calendar_fragment calendar_fragment = new Calendar_fragment();
-        //alendar_fragment.setArguments(bundle); no bundle yet, bundles used to pass info between fragments
 
-
+        calendar_fragment.setArguments(bundle);
 
         if (id == R.id.nav_calendar) {
             fragment_manager.beginTransaction().replace(R.id.content_frame, calendar_fragment).commit();
@@ -112,7 +113,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_leaderboard) {
             fragment_manager.beginTransaction().replace(R.id.content_frame, new Leaderboard_fragment()).commit();
         } else if (id == R.id.nav_settings) {
-            fragment_manager.beginTransaction().replace(R.id.content_frame, new Settings_fragment()).commit();
+            Settings_fragment settings_fragment = new Settings_fragment();
+            settings_fragment.setArguments(bundle);
+            fragment_manager.beginTransaction().replace(R.id.content_frame,settings_fragment).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
