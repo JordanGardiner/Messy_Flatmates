@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,12 +38,35 @@ public class Calendar_fragment extends Fragment {
         JSONObject response = connect.SendGetRequest( "/");
 
 
+
+
+        Button login = myView.findViewById(R.id.loginBtn);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User_login_fragment user_login_fragment = new User_login_fragment();
+                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, user_login_fragment).commit();
+
+            }
+        });
+
+//        Button createUser = myView.findViewById(R.id.create_user_btn);
+//        createUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Create_user_fragment create_user_fragment = new Create_user_fragment();
+//                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, create_user_fragment).commit();
+//
+//            }
+//        });
+
         TextView statusBox = myView.findViewById(R.id.DbStatus);
         try {
-            statusBox.setText(response.getJSONObject("responseBody").toString());
+            statusBox.setText(response.get("responseBody").toString());
         }catch(JSONException e){
 
         }
+
         return myView;
     }
 }

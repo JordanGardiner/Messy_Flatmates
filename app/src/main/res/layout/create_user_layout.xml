@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Fragments.Popups.Create_user_fragment">
+    tools:context=".Fragments.Create_user_fragment">
     
     <ScrollView
         android:clickable="true"
