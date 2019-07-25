@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.messy_flatmates.R;
+import com.example.messy_flatmates.db.InternalDBHandler;
 import com.example.messy_flatmates.db.Post_requests;
 
 import org.json.JSONException;
@@ -18,6 +19,8 @@ import org.json.JSONObject;
 
 
 public class User_login_fragment extends Fragment {
+
+
 
 
     @Override
@@ -35,14 +38,20 @@ public class User_login_fragment extends Fragment {
 
                 EditText email = myView.findViewById(R.id.emailEditTextLogin);
                 EditText password = myView.findViewById(R.id.passwordEditTextLogin);
-
-                JSONObject response = post_requests.Login(email.toString(), password.toString());
+                System.out.println("what about here?");
+                JSONObject response = post_requests.Login(email.getText().toString(), password.getText().toString());
 
                 try {
-
-                    if ((response.get("responseCode")).toString().equals("200")) {
+                    System.out.println("here???");
+                    if ((response.getString("responseCode")).equals("200")) {
                         Extra_Code wrapper = new Extra_Code();
-                        wrapper.createDialog(getContext(), "HURRAH!", (response.get("responseBody")).toString()).show();
+
+                        InternalDBHandler dbHandler = new InternalDBHandler(getContext());
+                        dbHandler.updateToken(response.getString("id"), response.getString("token"));
+
+
+                        wrapper.createDialog(getContext(), "HURRAH!", (response.getString
+                                ("id") + "\n" + response.getString("token"))).show();
                     }
                 } catch(JSONException e) {
                     System.out.println(e.getMessage());

@@ -16,8 +16,8 @@ import java.net.URL;
 
 public class Connections {
 
-    private String url = "http://121.99.223.175";
-    private String port = ":3009";
+    private String url = "http://192.168.1.3";
+    private String port = ":3008";
     private String responseCode = "408";
     private String responseBody = "";
     private Boolean failedConnection = true;
@@ -55,6 +55,8 @@ public class Connections {
 
                         //print result
                         System.out.println(response.toString());
+                        setResponseBody(response.toString());
+
                         failedConnection = false;
                         con.disconnect();
 
@@ -87,11 +89,12 @@ public class Connections {
         JSONObject responseObject = new JSONObject();
         try{
             if (failedConnection == false) {
-                responseObject.put("responseCode", responseCode);
-                responseObject.put("responseBody", response);
+                 responseObject = new JSONObject(responseBody);
+                 responseObject.put("responseCode", responseCode);
             } else {
-                responseObject.put("responseCode", "408");
-                responseObject.put("responseBody", "Request Timeout");
+                responseObject = new JSONObject(responseBody);
+                responseObject.put("responseCode", responseCode);
+
             }
         } catch (JSONException e){
             System.out.println(e.getMessage());
@@ -188,19 +191,18 @@ public class Connections {
             System.out.println(e.getMessage());
         }
 
+
         JSONObject responseJSON = new JSONObject();
         try{
+            responseJSON = new JSONObject(responseBody);
             responseJSON.put("responseCode", responseCode);
-            responseJSON.put("responseBody", responseBody);
+            System.out.println((responseJSON.getString("token")));
+
         } catch (JSONException e){
             System.out.println(e.getMessage());
         }
 
-        System.out.println(response.toString());
-
-
         return responseJSON;
-
     }
 
 

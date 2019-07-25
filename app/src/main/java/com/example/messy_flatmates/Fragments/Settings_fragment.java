@@ -28,18 +28,6 @@ public class Settings_fragment extends Fragment {
         TextView test_string = myView.findViewById(R.id.test_string_textView);
         test_string.setText("hello world!!");
 
-//        Button dev_mode = myView.findViewById(R.id.dev_login_btn);
-//        dev_mode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Create_user_fragment create_user_fragment = new Create_user_fragment();
-//                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, create_user_fragment).commit();
-//
-//
-//            }
-//        });
-
         return myView;
     }
 

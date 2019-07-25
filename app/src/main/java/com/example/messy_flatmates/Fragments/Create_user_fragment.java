@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Post_requests;
@@ -136,11 +137,11 @@ public class Create_user_fragment extends Fragment {
             }
         });
 
-        ConstraintLayout constraintLayout = myView.findViewById(R.id.constraintLayout);
+        ConstraintLayout constraintLayout = myView.findViewById(R.id.create_user_constraint_layout);
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hideKeyboardFrom(getContext(), myView);
+                wrapper.hideKeyboardFrom(getContext(), myView);
             }
         });
 
@@ -148,10 +149,7 @@ public class Create_user_fragment extends Fragment {
         return myView;
     }
 
-    public static void hideKeyboardFrom(Context context, View view) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
+
 
 
 }

@@ -62,7 +62,8 @@ public class Calendar_fragment extends Fragment {
 
         TextView statusBox = myView.findViewById(R.id.DbStatus);
         try {
-            statusBox.setText((response.get("responseBody")).toString());
+            System.out.println(response);
+            statusBox.setText(response.getString("message"));
         }catch(JSONException e){
             System.out.println(e.getMessage());
         }
