@@ -26,6 +26,11 @@ public class Connections {
 
     }
 
+    /**
+     * Creates a thread and sends an http get request to the web server
+     * @param requestString the route to the server i.e /api/Status
+     * @return returns the servers response in json format
+     */
     public JSONObject SendGetRequest(final String requestString){
         final StringBuffer response = new StringBuffer();
         try {
@@ -104,7 +109,12 @@ public class Connections {
 
     }
 
-
+    /**
+     * Creates a thread and sends the http post request through a stream writer
+     * @param requestString the route to the server i.e /api/user
+     * @param jsonBody the json body to send to the server
+     * @return returns the json object sent back from the server
+     */
     public JSONObject SendPostRequest(final String requestString, final JSONObject jsonBody){
         final StringBuffer response = new StringBuffer();
 

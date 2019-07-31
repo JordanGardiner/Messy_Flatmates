@@ -1,11 +1,9 @@
 package com.example.messy_flatmates;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.messy_flatmates.Fragments.Calendar_fragment;
 import com.example.messy_flatmates.Fragments.Create_task_fragment;
-import com.example.messy_flatmates.Fragments.Extra_Code;
 import com.example.messy_flatmates.Fragments.Group_fragment;
 import com.example.messy_flatmates.Fragments.Leaderboard_fragment;
 import com.example.messy_flatmates.Fragments.Login_Home_page;
@@ -31,7 +29,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
 import android.view.Menu;
-import android.view.inputmethod.InputMethodManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

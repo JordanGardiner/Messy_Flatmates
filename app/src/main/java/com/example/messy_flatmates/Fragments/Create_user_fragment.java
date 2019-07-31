@@ -1,10 +1,7 @@
 package com.example.messy_flatmates.Fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -15,11 +12,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
 
+import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Post_requests;
 

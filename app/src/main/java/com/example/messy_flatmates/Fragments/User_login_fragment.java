@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.InternalDBHandler;
 import com.example.messy_flatmates.db.Post_requests;

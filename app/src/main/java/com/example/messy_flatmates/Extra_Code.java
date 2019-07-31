@@ -1,4 +1,4 @@
-package com.example.messy_flatmates.Fragments;
+package com.example.messy_flatmates;
 
 import android.app.Activity;
 import android.app.AlertDialog;
