@@ -32,41 +32,41 @@ public class Calendar_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.calendar_layout, container, false);
         //Bundle bundle = this.getArguments();
-
-        Connections connect = new Connections();
-
-        JSONObject response = connect.SendGetRequest( "/");
-
-
-
-
-        Button login = myView.findViewById(R.id.loginBtn);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                User_login_fragment user_login_fragment = new User_login_fragment();
-                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, user_login_fragment).commit();
-
-            }
-        });
-
-        Button createUser = myView.findViewById(R.id.createUserBtn);
-        createUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Create_user_fragment create_user_fragment = new Create_user_fragment();
-                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, create_user_fragment).commit();
-
-            }
-        });
-
-        TextView statusBox = myView.findViewById(R.id.DbStatus);
-        try {
-            System.out.println(response);
-            statusBox.setText(response.getString("message"));
-        }catch(JSONException e){
-            System.out.println(e.getMessage());
-        }
+//
+//        Connections connect = new Connections();
+//
+//        JSONObject response = connect.SendGetRequest( "/api/Status"); //@Todo add this to the get_request class
+//
+//
+//
+//
+//        Button login = myView.findViewById(R.id.loginBtn);
+//        login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                User_login_fragment user_login_fragment = new User_login_fragment();
+//                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, user_login_fragment).commit();
+//
+//            }
+//        });
+//
+//        Button createUser = myView.findViewById(R.id.createUserBtn);
+//        createUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Create_user_fragment create_user_fragment = new Create_user_fragment();
+//                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, create_user_fragment).commit();
+//
+//            }
+//        });
+//
+//        TextView statusBox = myView.findViewById(R.id.DbStatus);
+//        try {
+//            System.out.println(response);
+//            statusBox.setText(response.getString("message"));
+//        }catch(JSONException e){
+//            System.out.println(e.getMessage());
+//        }
 
         return myView;
     }

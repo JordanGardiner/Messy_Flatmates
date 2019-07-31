@@ -28,6 +28,7 @@ public class User_login_fragment extends Fragment {
                              Bundle savedInstanceState) {
         final View myView;
         myView = inflater.inflate(R.layout.user_login_layout, container, false);
+        final InternalDBHandler dbHandler = new InternalDBHandler(getContext());
 
 
         Button loginBtn = myView.findViewById(R.id.loginBtn);
@@ -46,12 +47,12 @@ public class User_login_fragment extends Fragment {
                     if ((response.getString("responseCode")).equals("200")) {
                         Extra_Code wrapper = new Extra_Code();
 
-                        InternalDBHandler dbHandler = new InternalDBHandler(getContext());
-                        dbHandler.updateToken(response.getString("id"), response.getString("token"));
+                        System.out.println("Attempting to add token to internal db");
+                        dbHandler.addSession(response.getString("id"), response.getString("token"));
 
 
                         wrapper.createDialog(getContext(), "HURRAH!", (response.getString
-                                ("id") + "\n" + response.getString("token"))).show();
+                                ("id") + "\n" + dbHandler.getToken())).show();
                     }
                 } catch(JSONException e) {
                     System.out.println(e.getMessage());

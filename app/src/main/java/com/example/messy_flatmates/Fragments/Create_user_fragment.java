@@ -97,12 +97,12 @@ public class Create_user_fragment extends Fragment {
                 //System.out.println(response.getJSONObject("responseBody").toString());
                 System.out.println("testing json object");
                 try{
-                    String resCode = response.get("responseCode").toString();
-                    String resBody = response.get("responseBody").toString();
+                    String resCode = response.getString("responseCode");
+                    String user_id = response.getString("id");
                     if (resCode.equals("201")) {
                         AlertDialog.Builder builder = wrapper.createDialog(getContext(), "Success!", "An account has been created");
                         System.out.println("It worked!");
-                        System.out.println(resBody);
+                        System.out.println(user_id);
                         builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -119,7 +119,7 @@ public class Create_user_fragment extends Fragment {
 
                         System.out.println("unlucky !");
                     } else if(resCode.equals("409")){
-                        (wrapper.createDialog(getContext(), resCode, resBody)).show();
+                        (wrapper.createDialog(getContext(), resCode, user_id)).show();
                         myView.findViewById(R.id.email_editText5).setFocusable(true);
 
                         System.out.println("unlucky ! user already exists");
