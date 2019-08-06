@@ -29,9 +29,8 @@ public class InternalDBHandler {
         SQLiteDatabase db = myhelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("user_id", "null");
-        values.put("token", "null");
-
+        values.putNull("user_id");
+        values.putNull("token");
         long count = db.update("user",values, "KEY_ID = ?", new String[]{"1"});
 
         if (count >= 1) {

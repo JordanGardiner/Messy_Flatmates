@@ -37,32 +37,11 @@ public class Create_user_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         final View myView;
         myView = inflater.inflate(R.layout.create_user_layout, container, false);
 
         final EditText dateBox = myView.findViewById(R.id.date_editText);
-        dateBox.addTextChangedListener(new TextWatcher() {
-            int prevL;
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                prevL = dateBox.getText().toString().length();
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                int length = editable.length();
-                if ((prevL < length) && (length == 2 || length == 5)) {
-                    editable.append("-");
-                }
-            }
-        });
+        wrapper.dateFormat(dateBox);
 
 
         final Button create_userBtn = myView.findViewById(R.id.create_user_btn);
@@ -80,11 +59,7 @@ public class Create_user_fragment extends Fragment {
                 // format the date so the DB accepts it yyyy-mm-dd
 
                 String originalText = dob.getText().toString();
-                String delims = "[-]";
-                String[] arrayOfDate = originalText.split(delims);
-                String finalDOB = arrayOfDate[2] + arrayOfDate[1] + arrayOfDate[0];
-
-
+                String finalDOB = wrapper.parseDate(originalText);
 
                 System.out.println(fname.getText());
                 System.out.println(sname.getText());

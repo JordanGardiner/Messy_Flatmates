@@ -1,5 +1,9 @@
 package com.example.messy_flatmates.db;
 
+import android.content.Context;
+
+import com.example.messy_flatmates.MainActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -113,9 +117,10 @@ public class Connections {
      * Creates a thread and sends the http post request through a stream writer
      * @param requestString the route to the server i.e /api/user
      * @param jsonBody the json body to send to the server
+     * @param token the users current token, if not needed set to null
      * @return returns the json object sent back from the server
      */
-    public JSONObject SendPostRequest(final String requestString, final JSONObject jsonBody){
+    public JSONObject SendPostRequest(final String requestString, final JSONObject jsonBody, final String token){
         final StringBuffer response = new StringBuffer();
 
         try {
@@ -134,6 +139,12 @@ public class Connections {
 
                         con.setRequestProperty("Content-Type", "application/json");
                         con.setRequestProperty("Accept", "application/json");
+
+
+                        if(token != null){
+                            con.setRequestProperty("token", token);
+                        }
+
                         con.setDoOutput(true);
 
                         String jsonString = jsonBody.toString();
@@ -166,8 +177,8 @@ public class Connections {
                                     response.append(responseLine.trim());
                                 }
                                 setResponseBody(response.toString());
-                                System.out.println(responseBody);
                                 System.out.println("res Code!!");
+                                System.out.println(responseBody);
                             }
                         }
 
@@ -206,7 +217,6 @@ public class Connections {
         try{
             responseJSON = new JSONObject(responseBody);
             responseJSON.put("responseCode", responseCode);
-            System.out.println((responseJSON.getString("token")));
 
         } catch (JSONException e){
             System.out.println(e.getMessage());
