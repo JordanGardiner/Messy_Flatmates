@@ -15,6 +15,7 @@ import android.widget.EditText;
 
 import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
+import com.example.messy_flatmates.db.InternalDBHandler;
 import com.example.messy_flatmates.db.Post_requests;
 
 import org.json.JSONException;
@@ -37,6 +38,7 @@ public class Create_user_fragment extends Fragment {
 
         final View myView;
         myView = inflater.inflate(R.layout.create_user_layout, container, false);
+        final InternalDBHandler internalDBHandler = new InternalDBHandler(getContext());
 
         final EditText dateBox = myView.findViewById(R.id.create_userDate_editText);
         wrapper.dateFormat(dateBox);
@@ -69,26 +71,24 @@ public class Create_user_fragment extends Fragment {
                     String resCode = response.getString("responseCode");
                     String user_id = response.getString("id");
                     if (resCode.equals("201")) {
-                        AlertDialog.Builder builder = wrapper.createDialog(getContext(), "Success!", "An account has been created");
+                        if(internalDBHandler.addSession(response.getString("id"), response.getString("token")) == true){
+                            wrapper.createDialog(getContext(), "Success!", "Your account has been created and you" +
+                                    " have been logged on!", getActivity());
+                        } else {
+                            wrapper.createDialog(getContext(), "Success!", "Your account has been created! Please log on to continue", getActivity());
+                        }
+
                         System.out.println("It worked!");
                         System.out.println(user_id);
-                        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        Calendar_fragment calendar_fragment = new Calendar_fragment();
-                                        (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, calendar_fragment).commit();
 
-                                    }
-                                });
-                        builder.show();
 
                     } else if(resCode.equals("408")) {
                         (wrapper.createDialog(getContext(), "408", "Connection error, " +
-                                "please check you are connected to the internet and retry")).show();
+                                "please check you are connected to the internet and retry", (getActivity()))).show();
 
                         System.out.println("unlucky !");
                     } else if(resCode.equals("409")){
-                        (wrapper.createDialog(getContext(), resCode, user_id)).show();
+                        (wrapper.createDialog(getContext(), resCode, user_id, (getActivity()))).show();
                         myView.findViewById(R.id.create_userEmail_editText5).setFocusable(true);
 
                         System.out.println("unlucky ! user already exists");

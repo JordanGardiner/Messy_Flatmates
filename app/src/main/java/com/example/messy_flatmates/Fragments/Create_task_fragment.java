@@ -42,9 +42,9 @@ public class Create_task_fragment extends Fragment {
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wrapper.hideKeyboardFrom(getContext(), myView);
+
             }
-        });
+        });  wrapper.hideKeyboardFrom(getContext(), myView);
 
         EditText startDate = myView.findViewById(R.id.create_taskDueDateEditText2);
         wrapper.dateFormat(startDate);
@@ -68,7 +68,7 @@ public class Create_task_fragment extends Fragment {
                 System.out.println("Printing token in create task");
                 System.out.println(token);
                 if(token == null){
-                    wrapper.createDialog(getContext(), "Oops!", "Please log in before creating a task");
+                    wrapper.createDialog(getContext(), "Oops!", "Please log in before creating a task", (getActivity()));
                     (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
                 }
 
@@ -76,11 +76,14 @@ public class Create_task_fragment extends Fragment {
                         taskDescription.getText().toString(), parsedDueDate, parsedPoints, token);
                 try {
                     if (response.getString("responseCode").equals("201")) {
-                        wrapper.createDialog(getContext(), "Success!", "Task has been created").show();
+                        wrapper.createDialog(getContext(), "Success!", "Task has been created", (getActivity())).show();
                         (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
 
+                    } else if(response.getString("responseCode").equals("404")){
+                        wrapper.createDialog(getContext(), "Woah! Easy tiger!", "Please Join or create a flat in settings " +
+                                "before creating tasks", (getActivity())).show();
                     } else {
-                        wrapper.createDialog(getContext(), "Oops!", "Something went wrong!").show();
+                        wrapper.createDialog(getContext(), "Oops!", "Something went wrong! Please try again", (getActivity())).show();
                     }
                 } catch (JSONException e){
                     System.out.println("Error in the json of create task");

@@ -42,10 +42,10 @@ public class My_profile extends Fragment {
             @Override
             public void onClick(View view) {
                 if(token == null){
-                    wrapper.createDialog(getContext(), "Oops!", "Token unavailable");
+                    wrapper.createDialog(getContext(), "Oops!", "Token unavailable", (getActivity()));
                 }
                 JSONObject response = get_requests.Get_UserSelf(token);
-                wrapper.createDialog(getContext(), "Response body", response.toString()).show();
+                wrapper.createDialog(getContext(), "Response body", response.toString(), (getActivity())).show();
             }
         });
 

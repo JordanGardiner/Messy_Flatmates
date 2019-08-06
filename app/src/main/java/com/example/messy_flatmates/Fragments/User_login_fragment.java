@@ -52,12 +52,12 @@ public class User_login_fragment extends Fragment {
                         if (dbHandler.addSession(response.getString("id"), response.getString("token")) == true){
 
                             wrapper.createDialog(getContext(), "HURRAH!", (response.getString
-                                    ("id") + "\n" + dbHandler.getToken())).show();
+                                    ("id") + "\n" + dbHandler.getToken()), (getActivity())).show();
                             (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
 
                         } else {
                             wrapper.createDialog(getContext(), "Oops! something went wrong", (response.getString
-                                    ("id") + "\n" + dbHandler.getToken())).show();
+                                    ("id") + "\n" + dbHandler.getToken()), (getActivity())).show();
 
                         }
 

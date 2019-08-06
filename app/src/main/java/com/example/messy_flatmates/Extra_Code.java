@@ -10,15 +10,28 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.example.messy_flatmates.Fragments.Calendar_fragment;
 import com.example.messy_flatmates.MainActivity;
 
 public class Extra_Code {
 
-    public AlertDialog.Builder createDialog(Context context, String title, String message){
+    public AlertDialog.Builder createDialog(Context context, String title, String message, final FragmentActivity activity){
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
+
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Calendar_fragment calendar_fragment = new Calendar_fragment();
+                (activity).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, calendar_fragment).commit();
+
+            }
+        });
+
         builder.create();
         return builder;
     }

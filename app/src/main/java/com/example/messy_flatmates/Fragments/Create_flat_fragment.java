@@ -39,21 +39,23 @@ public class Create_flat_fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(token == null){
-                    (wrapper.createDialog(getContext(), "Oops!", "Please log in before creating a flat")).show();
+                    (wrapper.createDialog(getContext(), "Oops!", "Please log in before creating a flat", (getActivity()))).show();
                     (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
                 }
                 EditText addr = myView.findViewById(R.id.create_flatAddressEditText);
                 JSONObject response = post_requests.Create_flat(addr.getText().toString(), token);
                 try {
                     if (response.getString("responseCode").equals("201")) {
-                        (wrapper.createDialog(getContext(),"Success!", "Your flat was created!")).show();
+                        (wrapper.createDialog(getContext(),"Success!", "Your flat was created!", (getActivity()))).show();
                         (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
 
                     } else if(response.getString("responseCode").equals("400")){
                         (wrapper.createDialog(getContext(),"Oops!", "You're already assigned to a flat, to" +
-                                "please leave a flat before creating a new one")).show();
+                                "please leave a flat before creating a new one", (getActivity()))).show();
                     } else {
-                        (wrapper.createDialog(getContext(),"Oops!", "Something went wrong!")).show();
+                        (wrapper.createDialog(getContext(),"Oops!", "Something went wrong!", (getActivity()))).show();
+                        (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
+
                     }
                 } catch (JSONException e){
                     System.out.println(e.getMessage());

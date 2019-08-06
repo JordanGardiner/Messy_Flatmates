@@ -37,11 +37,11 @@ public class Calendar_fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (dbhandler.removeSession() == true){
-                    wrapper.createDialog(getContext(), "Success", "You have been logged out").show();
+                    wrapper.createDialog(getContext(), "Success", "You have been logged out", (getActivity())).show();
                     (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
 
                 } else {
-                    wrapper.createDialog(getContext(), "Oops", "Something went wrong and you haven't been logged out!").show();
+                    wrapper.createDialog(getContext(), "Oops", "Something went wrong and you haven't been logged out!", (getActivity())).show();
                 }
             }
         });
