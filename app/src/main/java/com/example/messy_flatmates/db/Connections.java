@@ -21,7 +21,7 @@ import java.net.URL;
 public class Connections {
 
     private String url = "http://192.168.1.4";
-    private String port = ":3008";
+    private String port = ":3006";
     private String responseCode = "408";
     private String responseBody = "";
     private Boolean failedConnection = true;
@@ -33,10 +33,12 @@ public class Connections {
     /**
      * Creates a thread and sends an http get request to the web server
      * @param requestString the route to the server i.e /api/Status
+     * @param token if no token make null
      * @return returns the servers response in json format
      */
-    public JSONObject SendGetRequest(final String requestString){
+    public JSONObject SendGetRequest(final String requestString, final String token){
         final StringBuffer response = new StringBuffer();
+
         try {
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -48,9 +50,16 @@ public class Connections {
                         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
                         con.setConnectTimeout(1500);
                         con.setRequestMethod("GET");
+                        if(token != null){
+                            con.setRequestProperty("token", token);
+                        }
+
+
                         setResponseCode(Integer.toString(con.getResponseCode()));
                         System.out.println("\nSending 'GET' request to URL : " + url);
                         System.out.println("Response Code : " + responseCode);
+
+
 
                         BufferedReader reader = new BufferedReader(
                                 new InputStreamReader(con.getInputStream()));
@@ -62,7 +71,6 @@ public class Connections {
 
                         reader.close();
 
-                        //print result
                         System.out.println(response.toString());
                         setResponseBody(response.toString());
 

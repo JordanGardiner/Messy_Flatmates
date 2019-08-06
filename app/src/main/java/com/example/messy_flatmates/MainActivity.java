@@ -7,6 +7,7 @@ import com.example.messy_flatmates.Fragments.Create_task_fragment;
 import com.example.messy_flatmates.Fragments.Group_fragment;
 import com.example.messy_flatmates.Fragments.Leaderboard_fragment;
 import com.example.messy_flatmates.Fragments.Login_Home_page;
+import com.example.messy_flatmates.Fragments.My_profile;
 import com.example.messy_flatmates.Fragments.My_task_fragment;
 import com.example.messy_flatmates.Fragments.Settings_fragment;
 import com.example.messy_flatmates.db.InternalDBHandler;
@@ -117,6 +118,8 @@ public class MainActivity extends AppCompatActivity
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Group_fragment()).commit();
             } else if (id == R.id.nav_leaderboard) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Leaderboard_fragment()).commit();
+            } else if(id == R.id.nav_profile){
+                fragment_manager.beginTransaction().replace(R.id.content_frame, new My_profile()).commit();
             } else if (id == R.id.nav_settings) {
                 Settings_fragment settings_fragment = new Settings_fragment();
                 settings_fragment.setArguments(bundle);
@@ -133,6 +136,8 @@ public class MainActivity extends AppCompatActivity
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Group_fragment()).commit();
             } else if (id == R.id.nav_leaderboard) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Leaderboard_fragment()).commit();
+            } else if(id == R.id.nav_profile){
+                fragment_manager.beginTransaction().replace(R.id.content_frame, new My_profile()).commit();
             } else if (id == R.id.nav_settings) {
                 Settings_fragment settings_fragment = new Settings_fragment();
                 settings_fragment.setArguments(bundle);
