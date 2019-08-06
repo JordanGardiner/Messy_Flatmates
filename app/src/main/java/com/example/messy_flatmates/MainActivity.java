@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity
         String token = db.getToken();
         System.out.println("setting up nav token");
         System.out.println(token);
-        if(token.equals("-1")){
+        if(token == null){
             if (id == R.id.nav_calendar) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
             } else if (id == R.id.nav_create_task) {

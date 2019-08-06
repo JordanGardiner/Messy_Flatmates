@@ -49,11 +49,18 @@ public class User_login_fragment extends Fragment {
                         Extra_Code wrapper = new Extra_Code();
 
                         System.out.println("Attempting to add token to internal db");
-                        dbHandler.addSession(response.getString("id"), response.getString("token"));
+                        if (dbHandler.addSession(response.getString("id"), response.getString("token")) == true){
 
+                            wrapper.createDialog(getContext(), "HURRAH!", (response.getString
+                                    ("id") + "\n" + dbHandler.getToken())).show();
+                            (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
 
-                        wrapper.createDialog(getContext(), "HURRAH!", (response.getString
-                                ("id") + "\n" + dbHandler.getToken())).show();
+                        } else {
+                            wrapper.createDialog(getContext(), "Oops! something went wrong", (response.getString
+                                    ("id") + "\n" + dbHandler.getToken())).show();
+
+                        }
+
                     }
                 } catch(JSONException e) {
                     System.out.println(e.getMessage());

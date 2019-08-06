@@ -27,36 +27,56 @@ public class InternalDBHandler {
     public boolean removeSession()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String query = "UPDATE user SET user_id = null, token = null WHERE key_id = 1;";
 
-        Cursor result = db.rawQuery(query, null);
+        ContentValues values = new ContentValues();
+        values.put("user_id", "null");
+        values.put("token", "null");
 
-        if (result != null)
-            result.moveToFirst();
-        else {
+        long count = db.update("user",values, "KEY_ID = ?", new String[]{"1"});
+
+        if (count >= 1) {
+            System.out.println("logout query success");
+            db.close();
+            return true;
+        } else {
+            System.out.println("logout query failure");
+            db.close();
             return false;
         }
-
-        db.close();
-
-        return true;
     }
 
-    public void addSession(String user_id, String token){
+    /**
+     * tries to update row 1 with user_id and token, If it does not exist then it will insert it.
+     * @param user_id
+     * @param token
+     * @return true if successful, false if error.
+     */
+    public boolean addSession(String user_id, String token){
 
-        long count =0;
         SQLiteDatabase db = myhelper.getWritableDatabase();
+
         ContentValues values = new ContentValues();
-
-
-        values.put("user_id",user_id);
+        values.put("user_id", user_id);
         values.put("token", token);
-        count = db.insert("user", null, values);
-         if (count >= 0){
-             System.out.println("Added token successfully");
-         } else {
-             System.out.println("error adding token");
-         }
+
+        long count = db.update("user",values, "KEY_ID = ?", new String[]{"1"});
+
+        if (count >= 1) {
+            System.out.println("logout query success");
+            db.close();
+            return true;
+        } else {
+            long counter = db.insert("user", null, values);
+            if (counter >= 1){
+                System.out.println("Added token successfully");
+                db.close();
+                return true;
+            } else {
+                System.out.println("error adding token");
+                db.close();
+                return false;
+            }
+        }
     }
 
     /**
@@ -73,7 +93,8 @@ public class InternalDBHandler {
         if (result != null && result.getCount()>0) {
             result.moveToFirst();
         } else {
-          return "-1";
+            System.out.println("Could not fetch token from internal db");
+            return null;
         }
         String token = result.getString(result.getColumnIndex("token"));
         System.out.println(token);
