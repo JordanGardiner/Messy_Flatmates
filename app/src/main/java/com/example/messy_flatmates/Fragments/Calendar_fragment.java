@@ -5,20 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
-import com.example.messy_flatmates.db.Connections;
 import com.example.messy_flatmates.db.InternalDBHandler;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Calendar_fragment extends Fragment {
 
@@ -36,7 +30,7 @@ public class Calendar_fragment extends Fragment {
         final InternalDBHandler dbhandler = new InternalDBHandler(getContext());
 
 
-        Button logout = myView.findViewById(R.id.logoutBtn);
+        Button logout = myView.findViewById(R.id.calendarLogoutBtn);
         final Extra_Code wrapper = new Extra_Code();
 
         logout.setOnClickListener(new View.OnClickListener() {

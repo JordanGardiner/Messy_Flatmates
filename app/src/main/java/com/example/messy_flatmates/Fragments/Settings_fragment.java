@@ -23,10 +23,14 @@ public class Settings_fragment extends Fragment {
 
         myView = inflater.inflate(R.layout.settings_layout, container, false);
 
-        final Bundle bundle = this.getArguments();
+        Button createFlatbtn = myView.findViewById(R.id.settingsCreateFlatBtn);
+        createFlatbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Create_flat_fragment()).commit();
 
-        TextView test_string = myView.findViewById(R.id.test_string_textView);
-        test_string.setText("hello world!!");
+            }
+        });
 
         return myView;
     }

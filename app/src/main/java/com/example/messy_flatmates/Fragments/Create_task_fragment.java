@@ -46,19 +46,19 @@ public class Create_task_fragment extends Fragment {
             }
         });
 
-        EditText startDate = myView.findViewById(R.id.taskDueDateEditText2);
+        EditText startDate = myView.findViewById(R.id.create_taskDueDateEditText2);
         wrapper.dateFormat(startDate);
 
 
-        Button createTaskbtn = myView.findViewById(R.id.create_task_btn);
+        Button createTaskbtn = myView.findViewById(R.id.create_taskCreateBtn);
         createTaskbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                EditText taskName = myView.findViewById(R.id.taskTitleEditText);
-                EditText taskDescription = myView.findViewById(R.id.taskDescriptoinEditText);
-                EditText taskDueDate = myView.findViewById(R.id.taskDueDateEditText2);
-                EditText taskPoints = myView.findViewById(R.id.taskPointsEditText);
+                EditText taskName = myView.findViewById(R.id.create_taskTitleEditText);
+                EditText taskDescription = myView.findViewById(R.id.create_taskDescriptoinEditText);
+                EditText taskDueDate = myView.findViewById(R.id.create_taskDueDateEditText2);
+                EditText taskPoints = myView.findViewById(R.id.create_taskPointsEditText);
 
                 String parsedDueDate = wrapper.parseDate(taskDueDate.getText().toString());
 

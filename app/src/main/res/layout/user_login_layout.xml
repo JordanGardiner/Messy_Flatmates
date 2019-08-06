@@ -9,7 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
-        android:id="@+id/passwordEditTextLogin"
+        android:id="@+id/user_loginPasswordEditTextLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,10 +21,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditTextLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/user_loginEmailEditTextLogin" />
 
     <EditText
-        android:id="@+id/emailEditTextLogin"
+        android:id="@+id/user_loginEmailEditTextLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -37,7 +37,7 @@
         tools:layout_editor_absoluteY="92dp" />
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/login_homeLoginBtn"
         android:layout_width="229dp"
         android:layout_height="68dp"
         android:layout_marginStart="8dp"
@@ -47,6 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/user_loginPasswordEditTextLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

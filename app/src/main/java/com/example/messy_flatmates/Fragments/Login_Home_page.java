@@ -1,7 +1,5 @@
 package com.example.messy_flatmates.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -33,7 +31,7 @@ public class Login_Home_page extends Fragment {
 
 
 
-        Button login = myView.findViewById(R.id.loginBtn);
+        Button login = myView.findViewById(R.id.login_homeLoginBtn);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +41,7 @@ public class Login_Home_page extends Fragment {
             }
         });
 
-        Button createUser = myView.findViewById(R.id.createUserBtn);
+        Button createUser = myView.findViewById(R.id.login_homeCreateUserBtn);
         createUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +53,7 @@ public class Login_Home_page extends Fragment {
 
         JSONObject response = connect.SendGetRequest( "/api/Status"); //@Todo add this to the get_request class
 
-        TextView statusBox = myView.findViewById(R.id.DbStatus);
+        TextView statusBox = myView.findViewById(R.id.login_homeDbStatus);
         try {
             System.out.println(response);
             statusBox.setText(response.getString("message"));

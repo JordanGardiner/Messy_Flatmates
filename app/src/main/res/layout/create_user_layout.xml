@@ -11,7 +11,7 @@
     tools:context=".Fragments.Create_user_fragment">
 
     <EditText
-        android:id="@+id/fName_editText"
+        android:id="@+id/create_userFName_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/create_user_btn"
+        android:id="@+id/create_userCreate_btn"
         android:layout_width="218dp"
         android:layout_height="87dp"
         android:layout_marginStart="8dp"
@@ -34,10 +34,10 @@
         android:text="Create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/create_userDate_editText" />
 
     <EditText
-        android:id="@+id/lName_editText"
+        android:id="@+id/create_userLName_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -48,10 +48,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fName_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/create_userFName_editText" />
 
     <EditText
-        android:id="@+id/email_editText5"
+        android:id="@+id/create_userEmail_editText5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -61,10 +61,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lName_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/create_userLName_editText" />
 
     <EditText
-        android:id="@+id/date_editText"
+        android:id="@+id/create_userDate_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -78,10 +78,10 @@
         android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/create_userPassword_editText" />
 
     <EditText
-        android:id="@+id/password_editText"
+        android:id="@+id/create_userPassword_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -92,7 +92,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/create_userEmail_editText5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

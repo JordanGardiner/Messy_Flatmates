@@ -7,8 +7,6 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,21 +38,21 @@ public class Create_user_fragment extends Fragment {
         final View myView;
         myView = inflater.inflate(R.layout.create_user_layout, container, false);
 
-        final EditText dateBox = myView.findViewById(R.id.date_editText);
+        final EditText dateBox = myView.findViewById(R.id.create_userDate_editText);
         wrapper.dateFormat(dateBox);
 
 
-        final Button create_userBtn = myView.findViewById(R.id.create_user_btn);
+        final Button create_userBtn = myView.findViewById(R.id.create_userCreate_btn);
         create_userBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Post_requests create_userREQ = new Post_requests();
 
-                final EditText fname = myView.findViewById(R.id.fName_editText);
-                EditText sname = myView.findViewById(R.id.lName_editText);
-                EditText email = myView.findViewById(R.id.email_editText5);
-                EditText password = myView.findViewById(R.id.password_editText);
-                EditText dob = myView.findViewById(R.id.date_editText);
+                final EditText fname = myView.findViewById(R.id.create_userFName_editText);
+                EditText sname = myView.findViewById(R.id.create_userLName_editText);
+                EditText email = myView.findViewById(R.id.create_userEmail_editText5);
+                EditText password = myView.findViewById(R.id.create_userPassword_editText);
+                EditText dob = myView.findViewById(R.id.create_userDate_editText);
 
                 // format the date so the DB accepts it yyyy-mm-dd
 
@@ -91,7 +89,7 @@ public class Create_user_fragment extends Fragment {
                         System.out.println("unlucky !");
                     } else if(resCode.equals("409")){
                         (wrapper.createDialog(getContext(), resCode, user_id)).show();
-                        myView.findViewById(R.id.email_editText5).setFocusable(true);
+                        myView.findViewById(R.id.create_userEmail_editText5).setFocusable(true);
 
                         System.out.println("unlucky ! user already exists");
                     } else {

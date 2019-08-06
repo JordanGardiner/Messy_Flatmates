@@ -59,6 +59,20 @@ public class Post_requests extends Connections {
 
     }
 
+    public JSONObject Create_flat(String addr, String token){
+        String requestString = "/api/flat";
+        JSONObject body = new JSONObject();
+        try{
+            body.put("address", addr);
+        } catch (JSONException e){
+            System.out.println(e.getMessage());
+        }
+
+        return SendPostRequest(requestString, body, token);
+
+
+
+    }
 }
 
 

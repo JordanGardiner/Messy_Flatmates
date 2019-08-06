@@ -8,7 +8,7 @@
     tools:context="com.example.messy_flatmates.Fragments.Create_task_fragment">
 
     <EditText
-        android:id="@+id/taskTitleEditText"
+        android:id="@+id/create_taskTitleEditText"
         android:layout_width="328dp"
         android:layout_height="89dp"
         android:layout_marginStart="8dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/taskDescriptoinEditText"
+        android:id="@+id/create_taskDescriptoinEditText"
         android:layout_width="328dp"
         android:layout_height="91dp"
         android:layout_marginStart="8dp"
@@ -35,10 +35,10 @@
         android:maxLines="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskTitleEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/create_taskTitleEditText" />
 
     <EditText
-        android:id="@+id/taskDueDateEditText2"
+        android:id="@+id/create_taskDueDateEditText2"
         android:layout_width="311dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -49,10 +49,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskDescriptoinEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/create_taskDescriptoinEditText" />
 
     <EditText
-        android:id="@+id/taskPointsEditText"
+        android:id="@+id/create_taskPointsEditText"
         android:layout_width="305dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -64,10 +64,10 @@
         android:maxLength="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskDueDateEditText2" />
+        app:layout_constraintTop_toBottomOf="@+id/create_taskDueDateEditText2" />
 
     <Button
-        android:id="@+id/create_task_btn"
+        android:id="@+id/create_taskCreateBtn"
         android:layout_width="173dp"
         android:layout_height="74dp"
         android:layout_marginStart="8dp"
@@ -76,6 +76,6 @@
         android:text="Create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskPointsEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/create_taskPointsEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

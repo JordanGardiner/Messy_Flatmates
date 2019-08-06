@@ -32,14 +32,14 @@ public class User_login_fragment extends Fragment {
         final InternalDBHandler dbHandler = new InternalDBHandler(getContext());
 
 
-        Button loginBtn = myView.findViewById(R.id.loginBtn);
+        Button loginBtn = myView.findViewById(R.id.login_homeLoginBtn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Post_requests post_requests = new Post_requests();
 
-                EditText email = myView.findViewById(R.id.emailEditTextLogin);
-                EditText password = myView.findViewById(R.id.passwordEditTextLogin);
+                EditText email = myView.findViewById(R.id.user_loginEmailEditTextLogin);
+                EditText password = myView.findViewById(R.id.user_loginPasswordEditTextLogin);
                 System.out.println("what about here?");
                 JSONObject response = post_requests.Login(email.getText().toString(), password.getText().toString());
 
