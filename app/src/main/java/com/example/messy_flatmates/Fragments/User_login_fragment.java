@@ -2,6 +2,7 @@ package com.example.messy_flatmates.Fragments;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ public class User_login_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View myView;
+        final Extra_Code wrapper = new Extra_Code();
         myView = inflater.inflate(R.layout.user_login_layout, container, false);
         final InternalDBHandler dbHandler = new InternalDBHandler(getContext());
 
@@ -67,6 +69,15 @@ public class User_login_fragment extends Fragment {
                 }
             }
         });
+
+        ConstraintLayout constraintLayout = myView.findViewById(R.id.user_loginConstraintLayout);
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wrapper.hideKeyboardFrom(getContext(), myView);
+            }
+        });
+
         return myView;
 
     }

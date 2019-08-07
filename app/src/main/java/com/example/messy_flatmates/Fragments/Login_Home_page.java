@@ -2,6 +2,7 @@ package com.example.messy_flatmates.Fragments;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Connections;
 
@@ -24,8 +26,8 @@ public class Login_Home_page extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        myView = inflater.inflate(R.layout.login__home_page_layout, container, false);
-
+        myView = inflater.inflate(R.layout.login_home_page_layout, container, false);
+        final Extra_Code wrapper = new Extra_Code();
         Connections connect = new Connections();
 
         Button login = myView.findViewById(R.id.login_homeLoginBtn);
@@ -58,6 +60,14 @@ public class Login_Home_page extends Fragment {
             System.out.println(e.getMessage());
         }
 
+
+        ConstraintLayout constraintLayout = myView.findViewById(R.id.login_homeConstraintLayout);
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wrapper.hideKeyboardFrom(getContext(), myView);
+            }
+        });
 
         return myView;
     }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.messy_flatmates.Fragments.Calendar_fragment;
 import com.example.messy_flatmates.Fragments.Create_task_fragment;
+import com.example.messy_flatmates.Fragments.Flat_home_fragment;
 import com.example.messy_flatmates.Fragments.Group_fragment;
 import com.example.messy_flatmates.Fragments.Leaderboard_fragment;
 import com.example.messy_flatmates.Fragments.Login_Home_page;
@@ -116,8 +117,8 @@ public class MainActivity extends AppCompatActivity
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new My_task_fragment()).commit();
             } else if (id == R.id.nav_group) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Group_fragment()).commit();
-            } else if (id == R.id.nav_leaderboard) {
-                fragment_manager.beginTransaction().replace(R.id.content_frame, new Leaderboard_fragment()).commit();
+            } else if (id == R.id.nav_flat) {
+                fragment_manager.beginTransaction().replace(R.id.content_frame, new Flat_home_fragment()).commit();
             } else if(id == R.id.nav_profile){
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new My_profile()).commit();
             } else if (id == R.id.nav_settings) {
@@ -134,8 +135,8 @@ public class MainActivity extends AppCompatActivity
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new My_task_fragment()).commit();
             } else if (id == R.id.nav_group) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Group_fragment()).commit();
-            } else if (id == R.id.nav_leaderboard) {
-                fragment_manager.beginTransaction().replace(R.id.content_frame, new Leaderboard_fragment()).commit();
+            } else if (id == R.id.nav_flat) {
+                fragment_manager.beginTransaction().replace(R.id.content_frame, new Flat_home_fragment()).commit();
             } else if(id == R.id.nav_profile){
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new My_profile()).commit();
             } else if (id == R.id.nav_settings) {

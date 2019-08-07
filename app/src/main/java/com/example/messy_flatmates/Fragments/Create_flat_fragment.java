@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class Create_flat_fragment extends Fragment {
         createFlat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                wrapper.hideKeyboardFrom(getContext(), myView);
                 if(token == null){
                     (wrapper.createDialog(getContext(), "Oops!", "Please log in before creating a flat", (getActivity()))).show();
                     (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
@@ -60,6 +62,14 @@ public class Create_flat_fragment extends Fragment {
                 } catch (JSONException e){
                     System.out.println(e.getMessage());
                 }
+            }
+        });
+
+        ConstraintLayout constraintLayout = myView.findViewById(R.id.create_flatConstraintLayout);
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wrapper.hideKeyboardFrom(getContext(), myView);
             }
         });
 

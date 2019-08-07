@@ -118,7 +118,7 @@ public class InternalDBHandler {
             String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
                     + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + USER_ID + " INTEGER, "
-                    + TOKEN + " TEXT"
+                    + TOKEN + " TEXT "
                     +  ")";
             db.execSQL(CREATE_TABLE);
         }

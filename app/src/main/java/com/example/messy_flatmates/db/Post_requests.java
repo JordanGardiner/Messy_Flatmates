@@ -7,7 +7,7 @@ import org.json.JSONTokener;
 
 public class Post_requests extends Connections {
 
-    public JSONObject Create_user(String firstName, String lastName, String email, String password, String dob){
+    public JSONObject Create_user(String firstName, String lastName, String email, String password, String dob) {
         JSONObject jsonBody = new JSONObject();
         try {
 
@@ -26,20 +26,20 @@ public class Post_requests extends Connections {
 
     }
 
-    public JSONObject Login(String email, String password){
+    public JSONObject Login(String email, String password) {
         JSONObject loginJSON = new JSONObject();
-        try{
+        try {
             loginJSON.put("email", email);
             loginJSON.put("password", password);
 
-        } catch (JSONException e){
+        } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
 
         return SendPostRequest("/api/user/login", loginJSON, null);
     }
 
-    public JSONObject Create_task(String taskName, String taskDescription, String dueDate, String points, String token){
+    public JSONObject Create_task(String taskName, String taskDescription, String dueDate, String points, String token) {
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -48,7 +48,7 @@ public class Post_requests extends Connections {
             jsonBody.put("dueDate", dueDate);
             jsonBody.put("taskPoints", Integer.parseInt(points));
 
-        } catch(JSONException e) {
+        } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
 
@@ -59,20 +59,34 @@ public class Post_requests extends Connections {
 
     }
 
-    public JSONObject Create_flat(String addr, String token){
+    public JSONObject Create_flat(String addr, String token) {
         String requestString = "/api/flat";
         JSONObject body = new JSONObject();
-        try{
+        try {
             body.put("address", addr);
-        } catch (JSONException e){
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
+        }
+        return SendPostRequest(requestString, body, token);
+    }
+
+    public JSONObject New_flatty(String inviteCode, String token) {
+        String request = "/api/flat/newFlatty";
+        JSONObject body = new JSONObject();
+        try {
+            body.put("invite_token", inviteCode);
+
+        } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
 
-        return SendPostRequest(requestString, body, token);
+        return SendPostRequest(request, body, token);
+    }
 
-
-
+    public JSONObject Leave_flat(String token){
+        String request = "/api/flat/leave";
+        JSONObject j = new JSONObject();
+        //return SendPostRequest(request, )
+        return j;
     }
 }
-
-

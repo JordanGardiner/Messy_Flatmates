@@ -38,13 +38,6 @@ public class Create_task_fragment extends Fragment {
         final Post_requests post_requests = new Post_requests();
         final InternalDBHandler internalDBHandler = new InternalDBHandler(getContext());
 
-        ConstraintLayout constraintLayout = myView.findViewById(R.id.create_task_constraint_layout);
-        constraintLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });  wrapper.hideKeyboardFrom(getContext(), myView);
 
         EditText startDate = myView.findViewById(R.id.create_taskDueDateEditText2);
         wrapper.dateFormat(startDate);
@@ -54,6 +47,7 @@ public class Create_task_fragment extends Fragment {
         createTaskbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                wrapper.hideKeyboardFrom(getContext(), myView);
 
                 EditText taskName = myView.findViewById(R.id.create_taskTitleEditText);
                 EditText taskDescription = myView.findViewById(R.id.create_taskDescriptoinEditText);
@@ -68,7 +62,7 @@ public class Create_task_fragment extends Fragment {
                 System.out.println("Printing token in create task");
                 System.out.println(token);
                 if(token == null){
-                    wrapper.createDialog(getContext(), "Oops!", "Please log in before creating a task", (getActivity()));
+                    wrapper.createDialog(getContext(), "Oops!", "Please log in before creating a task", (getActivity())).show();
                     (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
                 }
 
@@ -95,6 +89,13 @@ public class Create_task_fragment extends Fragment {
 
 
 
+        ConstraintLayout constraintLayout = myView.findViewById(R.id.create_task_constraint_layout);
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wrapper.hideKeyboardFrom(getContext(), myView);
+            }
+        });
 
         return myView;
     }

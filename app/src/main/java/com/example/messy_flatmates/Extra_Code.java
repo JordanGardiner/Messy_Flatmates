@@ -23,12 +23,10 @@ public class Extra_Code {
         builder.setTitle(title);
         builder.setMessage(message);
 
-        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Calendar_fragment calendar_fragment = new Calendar_fragment();
-                (activity).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, calendar_fragment).commit();
-
+                dialogInterface.dismiss();
             }
         });
 

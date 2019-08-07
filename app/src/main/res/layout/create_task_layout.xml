@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/create_task_constraint_layout"
+    android:clickable="false"
+    android:focusableInTouchMode="false"
     tools:context="com.example.messy_flatmates.Fragments.Create_task_fragment">
 
     <EditText

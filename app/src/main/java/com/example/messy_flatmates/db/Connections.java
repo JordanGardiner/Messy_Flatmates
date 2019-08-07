@@ -54,27 +54,30 @@ public class Connections {
                             con.setRequestProperty("token", token);
                         }
 
-
                         setResponseCode(Integer.toString(con.getResponseCode()));
-                        System.out.println("\nSending 'GET' request to URL : " + url);
-                        System.out.println("Response Code : " + responseCode);
+                        InputStream error = con.getErrorStream();
 
-
-
-                        BufferedReader reader = new BufferedReader(
-                                new InputStreamReader(con.getInputStream()));
-                        String inputLine;
-
-                        while ((inputLine = reader.readLine()) != null) {
-                            response.append(inputLine);
+                        if(error == null){
+                            try(BufferedReader br = new BufferedReader(
+                                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                                StringBuilder response = new StringBuilder();
+                                String responseLine = null;
+                                while ((responseLine = br.readLine()) != null) {
+                                    response.append(responseLine.trim());
+                                }
+                                setResponseBody(response.toString());
+                            }
+                        } else {
+                            try(BufferedReader br = new BufferedReader(
+                                    new InputStreamReader(con.getErrorStream(), "utf-8"))) {
+                                StringBuilder response = new StringBuilder();
+                                String responseLine = null;
+                                while ((responseLine = br.readLine()) != null) {
+                                    response.append(responseLine.trim());
+                                }
+                                setResponseBody(response.toString());
+                            }
                         }
-
-                        reader.close();
-
-                        System.out.println(response.toString());
-                        setResponseBody(response.toString());
-
-                        failedConnection = false;
                         con.disconnect();
 
                     } catch (MalformedURLException e) {
@@ -102,23 +105,19 @@ public class Connections {
             System.out.println(e.getMessage());
         }
 
-        System.out.println(response.toString());
-        JSONObject responseObject = new JSONObject();
+        JSONObject responseJSON = new JSONObject();
         try{
-            if (failedConnection == false) {
-                 responseObject = new JSONObject(responseBody);
-                 responseObject.put("responseCode", responseCode);
-            } else {
-                responseObject = new JSONObject(responseBody);
-                responseObject.put("responseCode", responseCode);
+            responseJSON = new JSONObject(responseBody);
+            responseJSON.put("responseCode", responseCode);
 
-            }
         } catch (JSONException e){
             System.out.println(e.getMessage());
         }
 
-        return responseObject;
-
+        System.out.println("Attempting to connect: " + requestString);
+        System.out.println("Response code " + responseCode);
+        System.out.println("Response Body " + responseBody);
+        return responseJSON;
     }
 
     /**
@@ -173,8 +172,6 @@ public class Connections {
                                     response.append(responseLine.trim());
                                 }
                                 setResponseBody(response.toString());
-                                System.out.println(responseBody);
-                                System.out.println("res Code!!");
                             }
                         } else {
                             try(BufferedReader br = new BufferedReader(
@@ -185,8 +182,6 @@ public class Connections {
                                     response.append(responseLine.trim());
                                 }
                                 setResponseBody(response.toString());
-                                System.out.println("res Code!!");
-                                System.out.println(responseBody);
                             }
                         }
 
@@ -230,6 +225,9 @@ public class Connections {
             System.out.println(e.getMessage());
         }
 
+        System.out.println("Attempting to connect: " + requestString);
+        System.out.println("Response code " + responseCode);
+        System.out.println("Response Body " + responseBody);
         return responseJSON;
     }
 

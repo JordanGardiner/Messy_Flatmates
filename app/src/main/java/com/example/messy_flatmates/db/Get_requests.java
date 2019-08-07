@@ -17,5 +17,15 @@ public class Get_requests extends Connections {
         return SendGetRequest(requestString, token);
     }
 
+    public JSONObject Get_Flat(String token){
+        String request = "/api/flat";
+        return SendGetRequest(request, token);
 
+    }
+
+    public JSONObject Get_Flat_Token(String token){
+        String request = "/api/flat/inviteToken";
+        return SendGetRequest(request, token);
+
+    }
 }

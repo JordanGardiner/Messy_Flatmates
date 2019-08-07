@@ -39,6 +39,7 @@ public class Create_user_fragment extends Fragment {
         final View myView;
         myView = inflater.inflate(R.layout.create_user_layout, container, false);
         final InternalDBHandler internalDBHandler = new InternalDBHandler(getContext());
+        final Post_requests post_requests = new Post_requests();
 
         final EditText dateBox = myView.findViewById(R.id.create_userDate_editText);
         wrapper.dateFormat(dateBox);
@@ -48,7 +49,7 @@ public class Create_user_fragment extends Fragment {
         create_userBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Post_requests create_userREQ = new Post_requests();
+                wrapper.hideKeyboardFrom(getContext(), myView);
 
                 final EditText fname = myView.findViewById(R.id.create_userFName_editText);
                 EditText sname = myView.findViewById(R.id.create_userLName_editText);
@@ -64,23 +65,32 @@ public class Create_user_fragment extends Fragment {
                 System.out.println(fname.getText());
                 System.out.println(sname.getText());
                 System.out.println(email.getText());
-                JSONObject response = create_userREQ.Create_user(fname.getText().toString(), sname.getText().toString(), email.getText().toString(), password.getText().toString(), finalDOB);
+                JSONObject response = post_requests.Create_user(fname.getText().toString(), sname.getText().toString(), email.getText().toString(), password.getText().toString(), finalDOB);
                 //System.out.println(response.getJSONObject("responseBody").toString());
                 System.out.println("testing json object");
                 try{
                     String resCode = response.getString("responseCode");
-                    String user_id = response.getString("id");
+                    System.out.println(response);
                     if (resCode.equals("201")) {
-                        if(internalDBHandler.addSession(response.getString("id"), response.getString("token")) == true){
-                            wrapper.createDialog(getContext(), "Success!", "Your account has been created and you" +
-                                    " have been logged on!", getActivity());
+                        JSONObject responseLogin;
+                        responseLogin = post_requests.Login(email.getText().toString(), password.getText().toString());
+                        System.out.println(responseLogin.getString("responseCode"));
+                        if(responseLogin.getString("responseCode").equals("200")) {
+                            if (internalDBHandler.addSession(responseLogin.getString("id"), responseLogin.getString("token")) == true) {
+                                wrapper.createDialog(getContext(), "Success!", "Your account has been created and you" +
+                                        " have been logged on!", getActivity()).show();
+                                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
+
+                            } else {
+                                wrapper.createDialog(getContext(), "Success!", "Your account has been created! Please log on to continue", getActivity()).show();
+                                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
+
+                            }
                         } else {
-                            wrapper.createDialog(getContext(), "Success!", "Your account has been created! Please log on to continue", getActivity());
+
+                            wrapper.createDialog(getContext(), "Success!", "Your account has been created! Please log on to continue", getActivity()).show();
+                            (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
                         }
-
-                        System.out.println("It worked!");
-                        System.out.println(user_id);
-
 
                     } else if(resCode.equals("408")) {
                         (wrapper.createDialog(getContext(), "408", "Connection error, " +
@@ -88,7 +98,7 @@ public class Create_user_fragment extends Fragment {
 
                         System.out.println("unlucky !");
                     } else if(resCode.equals("409")){
-                        (wrapper.createDialog(getContext(), resCode, user_id, (getActivity()))).show();
+                        (wrapper.createDialog(getContext(), resCode, response.getString("message"), (getActivity()))).show();
                         myView.findViewById(R.id.create_userEmail_editText5).setFocusable(true);
 
                         System.out.println("unlucky ! user already exists");
