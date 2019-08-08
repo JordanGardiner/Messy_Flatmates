@@ -23,8 +23,14 @@ import org.json.JSONObject;
 public class User_login_fragment extends Fragment {
 
 
-
-
+    /**
+     * @TODO add the rest of the error messages that correspond to the server requests.
+     * @TODO sort out time delay from request to server
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,13 +48,10 @@ public class User_login_fragment extends Fragment {
 
                 EditText email = myView.findViewById(R.id.user_loginEmailEditTextLogin);
                 EditText password = myView.findViewById(R.id.user_loginPasswordEditTextLogin);
-                System.out.println("what about here?");
                 JSONObject response = post_requests.Login(email.getText().toString(), password.getText().toString());
 
                 try {
-                    System.out.println("here???");
                     if ((response.getString("responseCode")).equals("200")) {
-                        Extra_Code wrapper = new Extra_Code();
 
                         System.out.println("Attempting to add token to internal db");
                         if (dbHandler.addSession(response.getString("id"), response.getString("token")) == true){
@@ -62,6 +65,10 @@ public class User_login_fragment extends Fragment {
                                     ("id") + "\n" + dbHandler.getToken()), (getActivity())).show();
 
                         }
+
+                    } else {
+                        wrapper.createDialog(getContext(), "Oops!", (response.getString
+                                ("message")), (getActivity())).show();
 
                     }
                 } catch(JSONException e) {

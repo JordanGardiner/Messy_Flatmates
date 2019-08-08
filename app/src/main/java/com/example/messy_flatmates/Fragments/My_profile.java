@@ -1,7 +1,5 @@
 package com.example.messy_flatmates.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +11,6 @@ import android.widget.Button;
 
 import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
-import com.example.messy_flatmates.db.Connections;
 import com.example.messy_flatmates.db.Get_requests;
 import com.example.messy_flatmates.db.InternalDBHandler;
 
@@ -44,7 +41,7 @@ public class My_profile extends Fragment {
                 if(token == null){
                     wrapper.createDialog(getContext(), "Oops!", "Token unavailable", (getActivity()));
                 }
-                JSONObject response = get_requests.Get_UserSelf(token);
+                JSONObject response = get_requests.Get_user(token, null);
                 wrapper.createDialog(getContext(), "Response body", response.toString(), (getActivity())).show();
             }
         });

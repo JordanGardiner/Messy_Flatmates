@@ -18,32 +18,33 @@ import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 
+/**
+ * @TODO: (before deploying) have error information stored in a log file, not System.out.println
+ * @version 1.0
+ * Connections is a superclass that holds the restful http methods (get, post, put, update, delete)
+ * each function simply sends the request, use the specific sub classes (Get_requests, Post_requests)
+ * for specific requests.
+ * @author Jordan Gardiner
+ */
 public class Connections {
 
-    private String url = "http://192.168.1.4";
-    private String port = ":3006";
+    private String url = "http://192.168.1.4"; //URL of server
+    private String port = ":3008"; //Port server is listening on
     private String responseCode = "408";
     private String responseBody = "";
-    private Boolean failedConnection = true;
-
-    public Connections(){
-
-    }
 
     /**
      * Creates a thread and sends an http get request to the web server
      * @param requestString the route to the server i.e /api/Status
      * @param token if no token make null
-     * @return returns the servers response in json format
+     * @return returns the servers response in json format e.g
      */
     public JSONObject SendGetRequest(final String requestString, final String token){
-        final StringBuffer response = new StringBuffer();
-
         try {
+            //create a new thread for the connection
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-
                     try {
 
                         URL obj = new URL(url + port + requestString);
@@ -53,15 +54,13 @@ public class Connections {
                         if(token != null){
                             con.setRequestProperty("token", token);
                         }
-
                         setResponseCode(Integer.toString(con.getResponseCode()));
                         InputStream error = con.getErrorStream();
-
                         if(error == null){
                             try(BufferedReader br = new BufferedReader(
                                     new InputStreamReader(con.getInputStream(), "utf-8"))) {
                                 StringBuilder response = new StringBuilder();
-                                String responseLine = null;
+                                String responseLine;
                                 while ((responseLine = br.readLine()) != null) {
                                     response.append(responseLine.trim());
                                 }
@@ -71,7 +70,7 @@ public class Connections {
                             try(BufferedReader br = new BufferedReader(
                                     new InputStreamReader(con.getErrorStream(), "utf-8"))) {
                                 StringBuilder response = new StringBuilder();
-                                String responseLine = null;
+                                String responseLine;
                                 while ((responseLine = br.readLine()) != null) {
                                     response.append(responseLine.trim());
                                 }
@@ -142,12 +141,10 @@ public class Connections {
 
                         con.setRequestMethod("POST");
                         con.setConnectTimeout(1500);
-                        //add request header
 
+                        //request headers
                         con.setRequestProperty("Content-Type", "application/json");
                         con.setRequestProperty("Accept", "application/json");
-
-
                         if(token != null){
                             con.setRequestProperty("token", token);
                         }
@@ -167,7 +164,7 @@ public class Connections {
                             try(BufferedReader br = new BufferedReader(
                                     new InputStreamReader(con.getInputStream(), "utf-8"))) {
                                 StringBuilder response = new StringBuilder();
-                                String responseLine = null;
+                                String responseLine;
                                 while ((responseLine = br.readLine()) != null) {
                                     response.append(responseLine.trim());
                                 }
@@ -177,16 +174,13 @@ public class Connections {
                             try(BufferedReader br = new BufferedReader(
                                     new InputStreamReader(con.getErrorStream(), "utf-8"))) {
                                 StringBuilder response = new StringBuilder();
-                                String responseLine = null;
+                                String responseLine;
                                 while ((responseLine = br.readLine()) != null) {
                                     response.append(responseLine.trim());
                                 }
                                 setResponseBody(response.toString());
                             }
                         }
-
-                        failedConnection = false;
-
 
                     } catch (MalformedURLException e) {
                         System.out.println("MalformedURLException");

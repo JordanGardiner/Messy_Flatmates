@@ -10,13 +10,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.ResultSet;
 
+/**
+ * @version 1.0
+ * The InternalDBHandler uses the inbuilt SQLite database on android. Contains DBhandler class
+ * @author Jordan Gardiner
+ */
 public class InternalDBHandler {
 
     DbHandler myhelper;
 
     public InternalDBHandler(Context context)
     {
-
         myhelper = new DbHandler(context);
     }
 
@@ -103,6 +107,10 @@ public class InternalDBHandler {
 
     }
 
+    /**
+     * Class to construct the database
+     * @author Jordan Gardiner
+     */
     public class DbHandler extends SQLiteOpenHelper {
         private static final int DB_VERSION = 1;
         private static final String DB_NAME = "MessyFlatmates";
