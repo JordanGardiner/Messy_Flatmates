@@ -14,32 +14,32 @@ import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.InternalDBHandler;
 
+/**
+ * @version 1.0
+ * The calendar fragment is responsible for holding the calendar where users can select tasks to view details
+ * Currently it just has a logout button for testing.
+ * @author Jordan Gardiner
+ */
 public class Calendar_fragment extends Fragment {
 
     private View myView;
 
-    public Calendar_fragment() {
-        // Required empty public constructor
-    }
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.calendar_layout, container, false);
         final InternalDBHandler dbhandler = new InternalDBHandler(getContext());
-
-
-        Button logout = myView.findViewById(R.id.calendarLogoutBtn);
         final Extra_Code wrapper = new Extra_Code();
 
+        myView = inflater.inflate(R.layout.calendar_layout, container, false);
+
+        //Calendar logout button
+        Button logout = myView.findViewById(R.id.calendarLogoutBtn);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (dbhandler.removeSession() == true){
                     wrapper.createDialog(getContext(), "Success", "You have been logged out", (getActivity())).show();
                     (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
-
                 } else {
                     wrapper.createDialog(getContext(), "Oops", "Something went wrong and you haven't been logged out!", (getActivity())).show();
                 }

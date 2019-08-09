@@ -18,6 +18,11 @@ import com.example.messy_flatmates.db.Connections;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @version 1.0
+ * Responsible for redirecting to the login and create a user fragments
+ * @author Jordan Gardiner
+ */
 public class Login_Home_page extends Fragment {
 
     private View myView;

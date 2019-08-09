@@ -20,17 +20,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+/**
+ * @version 1.0
+ * responsible for logging a user in and storing their session token in the sqlite database
+ * @TODO add the rest of the error messages that correspond to the server requests.
+ * @TODO sort out time delay from request to server
+ * @author Jordan Gardiner
+ * */
 public class User_login_fragment extends Fragment {
 
 
-    /**
-     * @TODO add the rest of the error messages that correspond to the server requests.
-     * @TODO sort out time delay from request to server
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

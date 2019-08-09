@@ -32,6 +32,11 @@ import androidx.fragment.app.FragmentManager;
 
 import android.view.Menu;
 
+/**
+ * @version 1.0
+ * the main activity builds the components of the app
+ * @author Jordan Gardiner
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

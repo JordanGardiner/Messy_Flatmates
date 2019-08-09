@@ -16,11 +16,12 @@ import com.example.messy_flatmates.db.InternalDBHandler;
 
 import org.json.JSONObject;
 
+/**
+ * @version 1.0
+ * responsible for displaying and editing a users profile.
+ * @author Jordan Gardiner
+ */
 public class My_profile extends Fragment {
-
-    public My_profile() {
-        // Required empty public constructor
-    }
 
     View myView;
     @Override

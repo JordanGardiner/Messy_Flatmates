@@ -20,6 +20,12 @@ import com.example.messy_flatmates.db.Post_requests;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @version 1.0
+ * Responsible for displaying your current flat information or it displays the information to join a flat
+ * using a flat code
+ * @author Jordan Gardiner
+ */
 public class Flat_home_fragment extends Fragment {
    View myView;
     @Override
@@ -27,12 +33,13 @@ public class Flat_home_fragment extends Fragment {
                              Bundle savedInstanceState) {
         final Get_requests get_requests = new Get_requests();
         final Post_requests post_requests = new Post_requests();
-
         InternalDBHandler internalDBHandler = new InternalDBHandler(getContext());
         final Extra_Code wrapper = new Extra_Code();
+
         //check if user has a flat
         final String token = internalDBHandler.getToken();
         final JSONObject response = get_requests.Get_Flat(token);
+
         try {
             if (response.getString("responseCode").equals("200")) {
                 //Individuals flat found
@@ -132,7 +139,7 @@ public class Flat_home_fragment extends Fragment {
             }
 
         } catch (JSONException e){
-
+            System.out.println(e.getMessage());
         }
 
         return myView;

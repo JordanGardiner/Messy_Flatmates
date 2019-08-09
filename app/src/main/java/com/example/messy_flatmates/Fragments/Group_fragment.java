@@ -11,6 +11,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.messy_flatmates.R;
 
+/**
+ * @vesion 1.0
+ *
+ */
 public class Group_fragment extends Fragment {
 
     View myView;

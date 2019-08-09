@@ -21,8 +21,12 @@ import com.example.messy_flatmates.db.Post_requests;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @version 1.0
+ * This fragment is responsible for creating a flat
+ * @author Jordan Gardiner
+ */
 public class Create_flat_fragment extends Fragment {
-
 
     View myView;
     @Override
@@ -35,6 +39,7 @@ public class Create_flat_fragment extends Fragment {
         final Post_requests post_requests = new Post_requests();
         final String token = internalDBHandler.getToken();
 
+        //Create flat button
         Button createFlat = myView.findViewById(R.id.create_flat_layoutCreateBtn);
         createFlat.setOnClickListener(new View.OnClickListener() {
             @Override

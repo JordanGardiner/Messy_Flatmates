@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.messy_flatmates.R;
 
+/**
+ * @version 1.0
+ */
 public class Leaderboard_fragment extends Fragment {
     View myView;
 

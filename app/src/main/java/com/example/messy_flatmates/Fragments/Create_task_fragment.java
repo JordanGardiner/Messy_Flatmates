@@ -21,7 +21,13 @@ import com.example.messy_flatmates.db.Post_requests;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+/**
+ * @version 1.0
+ * This fragment is responsible for creating a task and giving the option to have the task stored as a template
+ * @todo add template functionality
+ * @todo add ability to view templates
+ * @author Jordan Gardiner
+ */
 public class Create_task_fragment extends Fragment {
 
     public Create_task_fragment() {

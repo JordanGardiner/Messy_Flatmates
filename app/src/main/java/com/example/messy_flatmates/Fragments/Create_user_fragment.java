@@ -21,17 +21,17 @@ import com.example.messy_flatmates.db.Post_requests;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @version 1.0
+ * Responsible for creating a user and preforms basic input tests.
+ * TODO: 23/07/2019 Create checks to stop DOB going over day and month limits
+ * @author Jordan Gardiner
+ */
+
 public class Create_user_fragment extends Fragment {
 
     Extra_Code wrapper = new Extra_Code();
 
-    /**
-     * TODO: 23/07/2019 Create checks to stop DOB going over day and month limits
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class Create_user_fragment extends Fragment {
         final EditText dateBox = myView.findViewById(R.id.create_userDate_editText);
         wrapper.dateFormat(dateBox);
 
-
+        //Create user Button
         final Button create_userBtn = myView.findViewById(R.id.create_userCreate_btn);
         create_userBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,8 +15,20 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.messy_flatmates.Fragments.Calendar_fragment;
 import com.example.messy_flatmates.MainActivity;
 
+/**
+ * @version 1.0
+ * A wrapper class that is full of functions that are used by many other classes.
+ * @author Jordan Gardiner
+ */
 public class Extra_Code {
-
+    /**
+     * Creates an alertDialog that can be displayed when called.
+     * @param context (use function 'getContext()' to get the context)
+     * @param title (String title)
+     * @param message (String body)
+     * @param activity (use function 'getActivity()')
+     * @return an alertdialog, place '.show()' on the returned builder to display it.
+     */
     public AlertDialog.Builder createDialog(Context context, String title, String message, final FragmentActivity activity){
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
@@ -34,6 +46,12 @@ public class Extra_Code {
         return builder;
     }
 
+    /**
+     * function that hides the keyboard when a user clicks on the screen away from the text box. The
+     * layout must be set to clickable false and focus on touch false
+     * @param context (getContext()
+     * @param view the current view
+     */
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);

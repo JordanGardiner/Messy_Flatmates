@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.messy_flatmates.R;
 
-
+/**
+ * @version 1.0
+ */
 public class Settings_fragment extends Fragment {
     View myView;
     //    Dialog myDialog;

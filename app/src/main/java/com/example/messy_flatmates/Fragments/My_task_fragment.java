@@ -11,6 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.messy_flatmates.R;
 
+/**
+ * @version 1.0
+ * Responsible for displaying a task
+ * @author Jordan Gardiner
+ */
 public class My_task_fragment extends Fragment {
     View myView;
 
