@@ -25,6 +25,7 @@ import org.json.JSONObject;
  * @version 1.0
  * Responsible for creating a user and preforms basic input tests.
  * TODO: 23/07/2019 Create checks to stop DOB going over day and month limits
+ * @Todo: don't submit if fields are missing
  * @author Jordan Gardiner
  */
 
@@ -72,22 +73,14 @@ public class Create_user_fragment extends Fragment {
                     String resCode = response.getString("responseCode");
                     System.out.println(response);
                     if (resCode.equals("201")) {
-                        JSONObject responseLogin;
-                        responseLogin = post_requests.Login(email.getText().toString(), password.getText().toString());
-                        System.out.println(responseLogin.getString("responseCode"));
-                        if(responseLogin.getString("responseCode").equals("200")) {
-                            if (internalDBHandler.addSession(responseLogin.getString("id"), responseLogin.getString("token")) == true) {
-                                wrapper.createDialog(getContext(), "Success!", "Your account has been created and you" +
-                                        " have been logged on!", getActivity()).show();
-                                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
 
-                            } else {
-                                wrapper.createDialog(getContext(), "Success!", "Your account has been created! Please log on to continue", getActivity()).show();
-                                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
 
-                            }
+                        if (internalDBHandler.addSession(response.getString("id"), response.getString("token")) == true) {
+                            wrapper.createDialog(getContext(), "Success!", "Your account has been created and you" +
+                                    " have been logged on!", getActivity()).show();
+                            (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
+
                         } else {
-
                             wrapper.createDialog(getContext(), "Success!", "Your account has been created! Please log on to continue", getActivity()).show();
                             (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
                         }
@@ -102,11 +95,7 @@ public class Create_user_fragment extends Fragment {
                         myView.findViewById(R.id.create_userEmail_editText5).setFocusable(true);
 
                         System.out.println("unlucky ! user already exists");
-                    } else {
-                        System.out.println("IDFK");
                     }
-
-                    System.out.println(resCode);
 
                 } catch (JSONException e){
                     System.out.println("or here ??");
