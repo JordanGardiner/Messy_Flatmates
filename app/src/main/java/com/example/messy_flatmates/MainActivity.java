@@ -30,8 +30,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * @version 1.0
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
     //Possibly use as an alert for new messages on the message board
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +113,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         };
+
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 

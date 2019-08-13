@@ -267,11 +267,11 @@ public class Connections {
 
 
                         if(!requestType.equals("GET")){
+                            con.setDoOutput(true);
                             try(OutputStream os = con.getOutputStream()) {
                                 byte[] input = jsonString.getBytes("utf-8");
                                 os.write(input, 0, input.length);
                             }
-                            con.setDoOutput(true);
                         }
 
                         setResponseCode(Integer.toString(con.getResponseCode()));

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Connections;
+import com.example.messy_flatmates.db.Get_requests;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,7 @@ public class Login_Home_page extends Fragment {
 
         myView = inflater.inflate(R.layout.login_home_page_layout, container, false);
         final Extra_Code wrapper = new Extra_Code();
-        Connections connect = new Connections();
+        Get_requests get_request = new Get_requests();
 
         Button login = myView.findViewById(R.id.login_homeLoginBtn);
         login.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +56,7 @@ public class Login_Home_page extends Fragment {
             }
         });
 
-        JSONObject response = connect.SendRequest( "/api/Status", null, null, "GET"); //@Todo add this to the get_request class
+        JSONObject response = get_request.SendRequest( "/api/Status", null, null, "GET"); //@Todo add this to the get_request class
 
         TextView statusBox = myView.findViewById(R.id.login_homeDbStatus);
         try {
