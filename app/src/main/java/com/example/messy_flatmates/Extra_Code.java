@@ -5,11 +5,15 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.messy_flatmates.Fragments.Calendar_fragment;
@@ -47,6 +51,17 @@ public class Extra_Code {
         builder.create();
         return builder;
     }
+
+//    public ProgressBar createLoadingDialog(Context context, ConstraintLayout layout){
+//
+//        ProgressBar progressBar = new ProgressBar(context,null,android.R.attr.progressBarStyleLarge);
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
+//        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+//        layout.addView(progressBar,params);
+//
+//        return progressBar;
+//
+//    }
 
     /**
      * function that hides the keyboard when a user clicks on the screen away from the text box. The
