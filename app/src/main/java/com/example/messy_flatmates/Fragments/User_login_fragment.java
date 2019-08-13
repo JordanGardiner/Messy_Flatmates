@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
@@ -37,14 +38,20 @@ public class User_login_fragment extends Fragment {
         final View myView;
         final Extra_Code wrapper = new Extra_Code();
         myView = inflater.inflate(R.layout.user_login_layout, container, false);
-        final InternalDBHandler dbHandler = new InternalDBHandler(getContext());
 
+        final InternalDBHandler dbHandler = new InternalDBHandler(getContext());
 
         Button loginBtn = myView.findViewById(R.id.login_homeLoginBtn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 wrapper.hideKeyboardFrom(getContext(), myView);
+
+                //ConstraintLayout layout = myView.findViewById(R.id.user_loginConstraintLayout);
+//                ProgressBar progressBar = wrapper.createLoadingDialog(getContext(), layout);
+//                progressBar.setVisibility(View.VISIBLE);  //To show ProgressBar
+
+
                 Post_requests post_requests = new Post_requests();
                 EditText email = myView.findViewById(R.id.user_loginEmailEditTextLogin);
                 EditText password = myView.findViewById(R.id.user_loginPasswordEditTextLogin);
@@ -62,13 +69,11 @@ public class User_login_fragment extends Fragment {
                         } else {
                             wrapper.createDialog(getContext(), "Oops! something went wrong", (response.getString
                                     ("id") + "\n" + dbHandler.getToken()), (getActivity())).show();
-
                         }
 
                     } else {
                         wrapper.createDialog(getContext(), "Oops!", (response.getString
                                 ("message")), (getActivity())).show();
-
                     }
                 } catch(JSONException e) {
                     System.out.println(e.getMessage());
