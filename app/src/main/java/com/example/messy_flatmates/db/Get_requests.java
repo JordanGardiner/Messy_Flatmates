@@ -22,10 +22,10 @@ public class Get_requests extends Connections {
     public JSONObject Get_user(String token, String user_id){
         if(user_id == null){
             String requestString = "/api/user";
-            return SendGetRequest(requestString, token);
+            return SendRequest(requestString, null, token, "GET");
         } else {
             String requestString = "/api/user/?id=" + user_id;
-            return SendGetRequest(requestString, token);
+            return SendRequest(requestString, null, token, "GET");
         }
     }
 
@@ -36,7 +36,7 @@ public class Get_requests extends Connections {
      */
     public JSONObject Get_Flat(String token){
         String request = "/api/flat";
-        return SendGetRequest(request, token);
+        return SendRequest(request, null, token, "GET");
 
     }
 
@@ -47,7 +47,7 @@ public class Get_requests extends Connections {
      */
     public JSONObject Get_Flat_Token(String token){
         String request = "/api/flat/inviteToken";
-        return SendGetRequest(request, token);
+        return SendRequest(request, null, token, "GET");
 
     }
 }

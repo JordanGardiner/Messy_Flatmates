@@ -66,6 +66,7 @@ public class Flat_home_fragment extends Fragment {
                     @Override
                     public void onClick(View view) {
 
+
                         //@todo code to leave a flat.
 
                     }

@@ -27,25 +27,8 @@ public class Calendar_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final InternalDBHandler dbhandler = new InternalDBHandler(getContext());
-        final Extra_Code wrapper = new Extra_Code();
 
         myView = inflater.inflate(R.layout.calendar_layout, container, false);
-
-        //Calendar logout button
-        Button logout = myView.findViewById(R.id.calendarLogoutBtn);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (dbhandler.removeSession() == true){
-                    wrapper.createDialog(getContext(), "Success", "You have been logged out", (getActivity())).show();
-                    (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
-                } else {
-                    wrapper.createDialog(getContext(), "Oops", "Something went wrong and you haven't been logged out!", (getActivity())).show();
-                }
-            }
-        });
-
 
         return myView;
     }

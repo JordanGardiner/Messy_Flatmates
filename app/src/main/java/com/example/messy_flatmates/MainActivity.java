@@ -11,6 +11,7 @@ import com.example.messy_flatmates.Fragments.Login_Home_page;
 import com.example.messy_flatmates.Fragments.My_profile;
 import com.example.messy_flatmates.Fragments.My_task_fragment;
 import com.example.messy_flatmates.Fragments.Settings_fragment;
+import com.example.messy_flatmates.Fragments.dashboard_fragment;
 import com.example.messy_flatmates.db.InternalDBHandler;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -79,7 +80,9 @@ public class MainActivity extends AppCompatActivity
                 //choose what to display depending on user login status
                 if(token == null){
                     //user is not logged in
-                    navigationView.getMenu().findItem(R.id.nav_calendar).setVisible(true); //@todo replace with home
+                    navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_home).setVisible(false);
+                    navigationView.getMenu().findItem(R.id.nav_calendar).setVisible(false);
                     navigationView.getMenu().findItem(R.id.nav_create_task).setVisible(false);
                     navigationView.getMenu().findItem(R.id.nav_flat).setVisible(false);
                     navigationView.getMenu().findItem(R.id.nav_group).setVisible(false);
@@ -89,7 +92,9 @@ public class MainActivity extends AppCompatActivity
 
                 } else {
                     //user logged in
-                    navigationView.getMenu().findItem(R.id.nav_calendar).setVisible(true); //@todo replace with home
+                    navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+                    navigationView.getMenu().findItem(R.id.nav_home).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_calendar).setVisible(true);
                     navigationView.getMenu().findItem(R.id.nav_create_task).setVisible(true);
                     navigationView.getMenu().findItem(R.id.nav_flat).setVisible(true);
                     navigationView.getMenu().findItem(R.id.nav_group).setVisible(true);
@@ -154,7 +159,7 @@ public class MainActivity extends AppCompatActivity
         System.out.println(token);
 
         if(token == null){
-            if (id == R.id.nav_calendar) {
+            if (id == R.id.nav_login) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Login_Home_page()).commit();
             } else if (id == R.id.nav_settings) {
                 Settings_fragment settings_fragment = new Settings_fragment();
@@ -163,7 +168,9 @@ public class MainActivity extends AppCompatActivity
             }
 
         } else {
-            if (id == R.id.nav_calendar) {
+            if (id == R.id.nav_home) {
+                fragment_manager.beginTransaction().replace(R.id.content_frame, new dashboard_fragment()).commit();
+            } else if (id == R.id.nav_calendar) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();
             } else if (id == R.id.nav_create_task) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Create_task_fragment()).commit();
@@ -176,9 +183,7 @@ public class MainActivity extends AppCompatActivity
             } else if(id == R.id.nav_profile){
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new My_profile()).commit();
             } else if (id == R.id.nav_settings) {
-                Settings_fragment settings_fragment = new Settings_fragment();
-                settings_fragment.setArguments(bundle);
-                fragment_manager.beginTransaction().replace(R.id.content_frame,settings_fragment).commit();
+                fragment_manager.beginTransaction().replace(R.id.content_frame,new Settings_fragment()).commit();
             }
         }
 

@@ -36,7 +36,7 @@ public class Post_requests extends Connections {
         }
 
         String requestString = "/api/user";
-        return SendPostRequest(requestString, jsonBody, null);
+        return SendRequest(requestString, jsonBody, null, "POST");
 
 
     }
@@ -57,7 +57,7 @@ public class Post_requests extends Connections {
             System.out.println(e.getMessage());
         }
 
-        return SendPostRequest("/api/user/login", loginJSON, null);
+        return SendRequest("/api/user/login", loginJSON, null, "POST");
     }
 
     /**
@@ -83,7 +83,7 @@ public class Post_requests extends Connections {
         }
 
         String requestString = "/api/tasks";
-        return SendPostRequest(requestString, jsonBody, token);
+        return SendRequest(requestString, jsonBody, token, "POST");
 
     }
 
@@ -101,7 +101,7 @@ public class Post_requests extends Connections {
         } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
-        return SendPostRequest(requestString, body, token);
+        return SendRequest(requestString, body, token, "POST");
     }
 
     /**
@@ -120,7 +120,7 @@ public class Post_requests extends Connections {
             System.out.println(e.getMessage());
         }
 
-        return SendPostRequest(request, body, token);
+        return SendRequest(request, body, token, "POST");
     }
 
     /**

@@ -55,7 +55,7 @@ public class Login_Home_page extends Fragment {
             }
         });
 
-        JSONObject response = connect.SendGetRequest( "/api/Status", null); //@Todo add this to the get_request class
+        JSONObject response = connect.SendRequest( "/api/Status", null, null, "GET"); //@Todo add this to the get_request class
 
         TextView statusBox = myView.findViewById(R.id.login_homeDbStatus);
         try {
