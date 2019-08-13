@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
     //Possibly use as an alert for new messages on the message board
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
