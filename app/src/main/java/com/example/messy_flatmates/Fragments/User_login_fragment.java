@@ -15,6 +15,7 @@ import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.InternalDBHandler;
 import com.example.messy_flatmates.db.Post_requests;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,8 +44,8 @@ public class User_login_fragment extends Fragment {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                wrapper.hideKeyboardFrom(getContext(), myView);
                 Post_requests post_requests = new Post_requests();
-
                 EditText email = myView.findViewById(R.id.user_loginEmailEditTextLogin);
                 EditText password = myView.findViewById(R.id.user_loginPasswordEditTextLogin);
                 JSONObject response = post_requests.Login(email.getText().toString(), password.getText().toString());
@@ -54,7 +55,6 @@ public class User_login_fragment extends Fragment {
 
                         System.out.println("Attempting to add token to internal db");
                         if (dbHandler.addSession(response.getString("id"), response.getString("token")) == true){
-
                             wrapper.createDialog(getContext(), "HURRAH!", (response.getString
                                     ("id") + "\n" + dbHandler.getToken()), (getActivity())).show();
                             (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Calendar_fragment()).commit();

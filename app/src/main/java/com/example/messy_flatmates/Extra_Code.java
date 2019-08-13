@@ -14,6 +14,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.messy_flatmates.Fragments.Calendar_fragment;
 import com.example.messy_flatmates.MainActivity;
+import com.google.android.material.internal.NavigationMenu;
+import com.google.android.material.navigation.NavigationView;
 
 /**
  * @version 1.0
