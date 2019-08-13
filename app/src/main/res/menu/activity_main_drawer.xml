@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_login"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/upload"
             android:title="Login" />
         <item
             android:id="@+id/nav_home"
@@ -18,7 +18,7 @@
             android:title="Calendar" />
         <item
             android:id="@+id/nav_create_task"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/book"
             android:title="@string/nav_create_task" />
         <item
             android:id="@+id/nav_my_tasks"
@@ -30,7 +30,7 @@
             android:title="@string/nav_group" />
         <item
             android:id="@+id/nav_flat"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/heart"
             android:title="Flat" />
     </group>
 
@@ -38,11 +38,11 @@
         <menu>
             <item
                 android:id="@+id/nav_profile"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/user"
                 android:title="@string/nav_profile" />
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_menu_manage"
                 android:title="@string/nav_settings" />
         </menu>
     </item>

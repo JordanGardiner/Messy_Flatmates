@@ -13,39 +13,49 @@
 
     <TextView
         android:id="@+id/dashboard_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="402dp"
+        android:layout_height="247dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/dashboard_header"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/dashboard_cardview"
-        android:backgroundTint="@color/colorBackground"
         android:layout_width="395dp"
-        android:layout_height="0dp"
+        android:layout_height="549dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-
+        android:background="@color/colorTransparent"
+        android:backgroundTint="@color/colorTransparent"
+        android:overScrollMode="always"
+        android:forceHasOverlappingRendering="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashboard_header"
-        app:layout_constraintVertical_bias="0.551">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/colorTransparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <Button
                 android:id="@+id/btn_flatmates"
-                android:layout_width="190dp"
-                android:layout_height="200dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -54,15 +64,15 @@
                 android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.918"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.018" />
 
             <Button
                 android:id="@+id/btn_messages"
-                android:layout_width="190dp"
-                android:layout_height="200dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -71,15 +81,15 @@
                 android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.018" />
 
             <Button
                 android:id="@+id/btn_flat"
-                android:layout_width="190dp"
-                android:layout_height="200dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -88,15 +98,15 @@
                 android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.918"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_flatmates"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/btn_task"
-                android:layout_width="190dp"
-                android:layout_height="200dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -105,36 +115,36 @@
                 android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/btn_flat"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.041"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_messages"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/btn_user"
-                android:layout_width="190dp"
-                android:layout_height="200dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/user_card"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/btn_flat"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.041"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_task" />
 
             <Button
                 android:id="@+id/btn_settings"
-                android:layout_width="190dp"
-                android:layout_height="200dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/settings_card"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.918"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_flat" />
         </androidx.constraintlayout.widget.ConstraintLayout>
