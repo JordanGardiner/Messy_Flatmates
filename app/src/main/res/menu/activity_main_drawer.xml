@@ -7,23 +7,23 @@
         <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Calendar" />
+            android:title="@string/nav_calendar" />
         <item
             android:id="@+id/nav_create_task"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Create a Task" />
+            android:title="@string/nav_create_task" />
         <item
             android:id="@+id/nav_my_tasks"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="My Tasks" />
+            android:title="@string/nav_my_tasks" />
         <item
             android:id="@+id/nav_group"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Group" />
+            android:title="@string/nav_group" />
         <item
             android:id="@+id/nav_flat"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Flats" />
+            android:title="@string/nav_new_flat" />
     </group>
 
     <item android:title="Other">
@@ -31,11 +31,11 @@
             <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Profile" />
+                android:title="@string/nav_profile" />
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Settings" />
+                android:title="@string/nav_settings" />
         </menu>
     </item>
 
