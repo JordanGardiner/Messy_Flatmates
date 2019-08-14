@@ -272,7 +272,6 @@ public class Connections {
                                 byte[] input = jsonString.getBytes("utf-8");
                                 os.write(input, 0, input.length);
                             }
-
                         }
 
                         setResponseCode(Integer.toString(con.getResponseCode()));

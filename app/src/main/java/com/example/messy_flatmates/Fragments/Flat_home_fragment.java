@@ -16,6 +16,7 @@ import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Get_requests;
 import com.example.messy_flatmates.db.InternalDBHandler;
 import com.example.messy_flatmates.db.Post_requests;
+import com.example.messy_flatmates.db.Put_requests;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +34,9 @@ public class Flat_home_fragment extends Fragment {
                              Bundle savedInstanceState) {
         final Get_requests get_requests = new Get_requests();
         final Post_requests post_requests = new Post_requests();
+        final Put_requests put_requests = new Put_requests();
+
+
         InternalDBHandler internalDBHandler = new InternalDBHandler(getContext());
         final Extra_Code wrapper = new Extra_Code();
 
@@ -65,9 +69,25 @@ public class Flat_home_fragment extends Fragment {
                 leaveFlat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        JSONObject response = put_requests.removeUserFromFlat(token);
+                        //@todo add a check for an admin
+                        try {
+                            if (response.getString("responseCode").equals("201")){
+                                wrapper.createDialog(getContext(), "Success!", "You have been removed from the flat", getActivity()).show();
+                                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Flat_home_fragment()).commit();
+                            } else if(response.getString("responseCode").equals("401")){
+                                //unauthorised
+                            } else if(response.getString("responseCode").equals("404")) {
+                                //not found
+                            } else {
+                                wrapper.createDialog(getContext(), "Oops!", "Something went wrong!", getActivity()).show();
+                                (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Flat_home_fragment()).commit();
+                            }
 
-
-                        //@todo code to leave a flat.
+                        } catch (JSONException e){
+                            System.out.println(e.getMessage());
+                        }
+                        //returns not authorised if the user is not the admin of the flat.
 
                     }
                 });

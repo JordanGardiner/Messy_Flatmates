@@ -20,6 +20,7 @@ import com.example.messy_flatmates.db.InternalDBHandler;
 
 /**
  * @version 1.0
+ * @todo delete flat button (Only appear if a user is an admin
  */
 public class Settings_fragment extends Fragment {
     View myView;
