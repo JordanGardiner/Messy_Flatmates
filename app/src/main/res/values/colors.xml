@@ -9,5 +9,6 @@
     <color name="colorButtons">#484040</color>
     <color name="colorTransparent">#00000000</color> <!-- 99 is for alpha and others pairs zero's are for R G B -->
     <color name="colorBackground">#2D2D36</color>
+    <color name="navBarItems">#4AD193</color>
 
 </resources>
