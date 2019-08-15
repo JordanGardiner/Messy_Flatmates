@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:clickable="false"
     android:focusableInTouchMode="false"
+    android:background="@color/colorBackground"
     tools:context=".Fragments.Create_flat_fragment">
 
     <EditText
@@ -19,6 +20,8 @@
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +34,8 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="8dp"
         android:text="create"
+        android:background="@color/colorButtons"
+        android:textColor="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

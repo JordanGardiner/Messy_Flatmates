@@ -7,6 +7,7 @@
     android:id="@+id/create_task_constraint_layout"
     android:clickable="false"
     android:focusableInTouchMode="false"
+    android:background="@color/colorBackground"
     tools:context="com.example.messy_flatmates.Fragments.Create_task_fragment">
 
     <EditText
@@ -19,6 +20,8 @@
         android:ems="10"
         android:hint="Task Title"
         android:inputType="textPersonName"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +38,8 @@
         android:hint="Task Description"
         android:inputType="textPersonName"
         android:maxLines="10"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_taskTitleEditText" />
@@ -49,6 +54,8 @@
         android:ems="10"
         android:hint="End Date (dd-mm-yyyy)"
         android:inputType="textPersonName"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_taskDescriptoinEditText" />
@@ -64,6 +71,8 @@
         android:hint="Points"
         android:inputType="number"
         android:maxLength="10"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_taskDueDateEditText2" />
@@ -76,6 +85,8 @@
         android:layout_marginTop="84dp"
         android:layout_marginEnd="8dp"
         android:text="Create"
+        android:textColor="@color/colorBasictext"
+        android:background="@color/colorButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_taskPointsEditText" />

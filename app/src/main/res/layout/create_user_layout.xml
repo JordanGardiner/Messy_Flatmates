@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:clickable="false"
     android:focusableInTouchMode="false"
+    android:background="@color/colorBackground"
 
     tools:context=".Fragments.Create_user_fragment">
 
@@ -20,6 +21,8 @@
         android:ems="10"
         android:hint="First Name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +35,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Create"
+        android:textColor="@color/colorBasictext"
+        android:background="@color/colorButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_userDate_editText" />
@@ -45,6 +50,8 @@
         android:ems="10"
         android:hint="Surname Name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +66,8 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_userLName_editText" />
@@ -70,12 +79,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-
         android:ems="10"
         android:hint="Date Of Birth (dd-mm-yyyy)"
         android:maxLength="10"
-
         android:singleLine="false"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_userPassword_editText" />
@@ -90,6 +99,8 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_userEmail_editText5" />

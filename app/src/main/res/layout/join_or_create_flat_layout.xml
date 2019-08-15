@@ -5,6 +5,7 @@
     android:id="@+id/join_or_create_flatConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".Fragments.Flat_home_fragment">
 
     <Button
@@ -18,6 +19,8 @@
         android:layout_marginTop="84dp"
         android:layout_marginEnd="8dp"
         android:text="Create a Flat"
+        android:textColor="@color/colorBasictext"
+        android:background="@color/colorButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +34,8 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="8dp"
         android:text="Join flat"
+        android:textColor="@color/colorBasictext"
+        android:background="@color/colorButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/join_or_create_flatFlatCodeEditText" />
@@ -46,6 +51,8 @@
         android:ems="10"
         android:hint="FlatCode"
         android:inputType="textPersonName"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/join_or_create_flatCreateFlatBtn" />
@@ -57,6 +64,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="92dp"
         android:text="You are not a member of a flat, please join a flat!"
+        android:textColor="@color/colorBasictext"
+        android:textColorHint="@color/colorBasictext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"

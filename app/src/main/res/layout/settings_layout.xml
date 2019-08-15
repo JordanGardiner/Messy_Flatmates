@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="com.example.messy_flatmates.Fragments.Settings_fragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -17,6 +18,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Logout"
+        android:background="@color/colorButtons"
+        android:textColor="@color/colorBasictext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
