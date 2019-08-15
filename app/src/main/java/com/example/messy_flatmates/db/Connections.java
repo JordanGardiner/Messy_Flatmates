@@ -341,7 +341,7 @@ public class Connections {
 
         System.out.println("Attempting to connect: " + requestString);
         System.out.println("Response code " + responseCode);
-        System.out.println("Response Body " + responseBody);
+        System.out.println("Response Body " + responseBody); //@todo error with a JSONArray being made as a JSONObject. 
         return responseJSON;
     }
 

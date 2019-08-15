@@ -50,4 +50,10 @@ public class Get_requests extends Connections {
         return SendRequest(request, null, token, "GET");
 
     }
+
+
+    public JSONObject Get_My_Tasks(String token){
+        String request = "/api/tasks";
+        return SendRequest(request, null, token, "GET");
+    }
 }
