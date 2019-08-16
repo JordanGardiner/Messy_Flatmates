@@ -4,16 +4,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.JsonReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.messy_flatmates.Extra_Code;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Get_requests;
 import com.example.messy_flatmates.db.InternalDBHandler;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -21,7 +24,7 @@ import org.json.JSONObject;
  * responsible for displaying and editing a users profile.
  * @author Jordan Gardiner
  */
-public class My_profile extends Fragment {
+public class My_profile extends Fragment{
 
     View myView;
     @Override
@@ -35,19 +38,38 @@ public class My_profile extends Fragment {
 
         final String token = internalDBHandler.getToken();
 
-        Button getUserBtn = myView.findViewById(R.id.my_profileGetDetailsBtn);
-        getUserBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(token == null){
-                    wrapper.createDialog(getContext(), "Oops!", "Token unavailable", (getActivity()));
-                }
-                JSONObject response = get_requests.Get_user(token, null);
-                wrapper.createDialog(getContext(), "Response body", response.toString(), (getActivity())).show();
+        JSONObject user = get_requests.Get_user(token, null);
+
+        TextView txt_points = myView.findViewById(R.id.txt_points);
+        TextView txt_dob = myView.findViewById(R.id.txt_dob);
+        TextView txt_email = myView.findViewById(R.id.txt_email);
+        TextView txt_status = myView.findViewById(R.id.txt_status);
+        TextView txt_name = myView.findViewById(R.id.txt_name);
+
+
+        try {
+
+            txt_points.setText(user.getString("points"));
+            txt_name.setText(user.getString("first_name"));
+            txt_email.setText(user.getString("email"));
+
+            if(user.getString("status") == "null"){
+                txt_status.setText("NA");
+            } else {
+                txt_status.setText(user.getString("status"));
             }
-        });
+
+            if(user.getString("dob") == null){
+                txt_dob.setText("NA");
+            } else {
+                txt_dob.setText(user.getString("dob"));
+            }
 
 
+
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
+        }
 
         return myView;
     }
