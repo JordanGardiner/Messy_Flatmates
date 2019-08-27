@@ -46,6 +46,8 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="@color/colorBasictext"
+        android:textColorHighlight="#4CAF50"
+        android:textColorLink="#4CAF50"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
