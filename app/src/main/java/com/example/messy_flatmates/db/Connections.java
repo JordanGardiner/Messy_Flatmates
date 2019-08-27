@@ -28,7 +28,8 @@ import java.net.URL;
  */
 public class Connections {
 
-    private String url = "http://192.168.1.11"; //URL of server
+    //private String url = "http://192.168.1.11"; //URL of server
+    private String url = "http://10.196.7.160";
     private String port = ":3009"; //Port server is listening on
     private String responseCode = "408";
     private String responseBody = "";
