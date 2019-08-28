@@ -1,9 +1,5 @@
 package com.example.messy_flatmates.db;
 
-import android.content.Context;
-
-import com.example.messy_flatmates.MainActivity;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -28,8 +23,8 @@ import java.net.URL;
  */
 public class Connections {
 
-    //private String url = "http://192.168.1.11"; //URL of server
-    private String url = "http://10.196.7.160";
+    private String url = "http://192.168.1.14"; //URL of server
+   //private String url = "http://10.196.7.160";
     private String port = ":3009"; //Port server is listening on
     private String responseCode = "408";
     private String responseBody = "";
@@ -286,6 +281,7 @@ public class Connections {
                                 while ((responseLine = br.readLine()) != null) {
                                     response.append(responseLine.trim());
                                 }
+                                System.out.println("This is the original response:   " + response);
                                 setResponseBody(response.toString());
                             }
                         } else {
@@ -296,7 +292,10 @@ public class Connections {
                                 while ((responseLine = br.readLine()) != null) {
                                     response.append(responseLine.trim());
                                 }
+                                System.out.println("This is the original response:   " + response);
                                 setResponseBody(response.toString());
+                            } catch (Exception e){
+                                System.out.println("Something went wrong!! in connections");
                             }
                         }
                         con.disconnect();
@@ -332,7 +331,16 @@ public class Connections {
 
         JSONObject responseJSON = new JSONObject();
         try{
-            responseJSON = new JSONObject(responseBody);
+
+            char beginChar = responseBody.charAt(0);
+            if(Character.toString(beginChar).equals("[")){
+                //returned array of JSONobjects
+                System.out.println("its a [ !!");
+                responseJSON = new JSONObject("{ array: " + responseBody + "}");
+            } else {
+                responseJSON = new JSONObject(responseBody);
+            }
+
             responseJSON.put("responseCode", responseCode);
 
         } catch (JSONException e){
@@ -342,7 +350,8 @@ public class Connections {
 
         System.out.println("Attempting to connect: " + requestString);
         System.out.println("Response code " + responseCode);
-        System.out.println("Response Body " + responseBody); //@todo error with a JSONArray being made as a JSONObject. 
+        System.out.println("Response Body " + responseBody); //@todo error with a JSONArray being made as a JSONObject.
+        System.out.println("Response " + responseJSON);
         return responseJSON;
     }
 

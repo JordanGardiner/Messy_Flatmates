@@ -1,42 +1,28 @@
 package com.example.messy_flatmates;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+
+import com.example.messy_flatmates.Fragments.All_tasks_fragment;
 import com.example.messy_flatmates.Fragments.Calendar_fragment;
 import com.example.messy_flatmates.Fragments.Create_task_fragment;
 import com.example.messy_flatmates.Fragments.Flat_home_fragment;
 import com.example.messy_flatmates.Fragments.Group_fragment;
-import com.example.messy_flatmates.Fragments.Leaderboard_fragment;
 import com.example.messy_flatmates.Fragments.Login_Home_page;
 import com.example.messy_flatmates.Fragments.My_profile;
-import com.example.messy_flatmates.Fragments.My_task_fragment;
 import com.example.messy_flatmates.Fragments.Settings_fragment;
 import com.example.messy_flatmates.Fragments.dashboard_fragment;
 import com.example.messy_flatmates.db.InternalDBHandler;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.Menu;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 /**
  * @version 1.0
@@ -48,6 +34,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Bundle bundle = new Bundle();
+    public FragmentManager fragment_manager = getSupportFragmentManager();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +147,7 @@ public class MainActivity extends AppCompatActivity
         InternalDBHandler db = new InternalDBHandler((this.getBaseContext()));
 
         int id = item.getItemId();
-        FragmentManager fragment_manager = getSupportFragmentManager();
+
 
         String token = db.getToken();
         System.out.println("setting up nav token");
@@ -182,7 +170,7 @@ public class MainActivity extends AppCompatActivity
             } else if (id == R.id.nav_create_task) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Create_task_fragment()).commit();
             } else if (id == R.id.nav_my_tasks) {
-                fragment_manager.beginTransaction().replace(R.id.content_frame, new My_task_fragment()).commit();
+                fragment_manager.beginTransaction().replace(R.id.content_frame, new All_tasks_fragment()).commit();
             } else if (id == R.id.nav_group) {
                 fragment_manager.beginTransaction().replace(R.id.content_frame, new Group_fragment()).commit();
             } else if (id == R.id.nav_flat) {

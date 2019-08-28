@@ -13,14 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.messy_flatmates.R;
 
-import java.util.ArrayList;
-
 /**
  * @version 1.0
  * Responsible for displaying a task
  * @author Jordan Gardiner
  */
-public class My_task_fragment extends Fragment {
+public class All_tasks_fragment extends Fragment {
     View myView;
     ListAdapter adapter;
 

@@ -1,27 +1,24 @@
 package com.example.messy_flatmates.Fragments;
 
 import android.content.Context;
-import android.content.SyncAdapterType;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.messy_flatmates.MainActivity;
 import com.example.messy_flatmates.R;
 import com.example.messy_flatmates.db.Get_requests;
 import com.example.messy_flatmates.db.InternalDBHandler;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter {
@@ -29,6 +26,8 @@ public class ListAdapter extends RecyclerView.Adapter {
     private List<String> mData;
     private LayoutInflater mInflater;
     private final Context context;
+    JSONObject responseJSON;
+    Integer firstId;
 
     public ListAdapter(Context contextIn){
         context = contextIn;
@@ -37,29 +36,30 @@ public class ListAdapter extends RecyclerView.Adapter {
 
         String token = internalDBHandler.getToken();
         JSONObject response = get_requests.Get_My_Tasks(token);
-        ArrayList<String> taskTitleArray = new ArrayList<>();
 
-        System.out.println(response);
         System.out.println("here...............");
 
+
         try{
-            JSONArray responseArray = new JSONArray("{ " + response.toString() + " }");
+            System.out.println(response);
+            System.out.println("Length of json array :  " + response.getJSONArray("array").length());
 
-            for(int i = 0; i <= responseArray.length(); i++){
+            firstId = Integer.parseInt(response.getJSONArray("array").getJSONObject(0).getString("task_id"));
+            responseJSON = response;
 
-                taskTitleArray.add(responseArray.getJSONObject(i).getString("task_name"));
-                System.out.println(responseArray.getJSONObject(i).getString("task_name"));
+            for(int i = 0; i <= response.getJSONArray("array").length(); i++){
+
+                System.out.println(response.getJSONArray("array").getJSONObject(i).getString("task_name"));
+                System.out.println(response.getJSONArray("array").getJSONObject(i).toString());
 
             }
 
 
         } catch (JSONException e){
-            System.out.println("here");
+            System.out.println("JSON EXCEPTION");
 
             System.out.println(e.getMessage());
         }
-
-
 
 
         System.out.println("this is executed how many times ??");
@@ -81,7 +81,12 @@ public class ListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return tempData.title.length;
+        try{
+            return (responseJSON.getJSONArray("array").length());
+        } catch (JSONException e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
     }
 
 
@@ -97,7 +102,33 @@ public class ListAdapter extends RecyclerView.Adapter {
             taskBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     System.out.println("wow");
+                    System.out.println(taskBTN.getId());
+                    Bundle bundle = new Bundle();
+
+                    System.out.println("taskbtn id: " + (taskBTN.getId()));
+                    try{
+
+                        for(int i = 0; i < responseJSON.getJSONArray("array").length(); i++ ){
+                            System.out.println((responseJSON.getJSONArray("array").getJSONObject(i).getString("task_id")) + taskBTN.getId());
+                            if(Integer.parseInt(responseJSON.getJSONArray("array").getJSONObject(i).getString("task_id")) == (taskBTN.getId())){
+                                bundle.putString("task", responseJSON.getJSONArray("array").getJSONObject(i).toString());
+                                System.out.println("bundle working?");
+                                break;
+                            }
+                        }
+
+
+                    } catch(JSONException e){
+                        System.out.println(e.getMessage());
+                    }
+
+                    View_taks_fragment view_taks_fragment = new View_taks_fragment();
+                    view_taks_fragment.setArguments(bundle);
+
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, view_taks_fragment).addToBackStack(null).commit();
 
                 }
             });
@@ -107,7 +138,17 @@ public class ListAdapter extends RecyclerView.Adapter {
         }
 
         public void bindView(int position){
-            taskBTN.setText(tempData.title[position]);
+            JSONObject taskJSON;
+            try{
+
+
+                taskBTN.setId(Integer.parseInt(responseJSON.getJSONArray("array").getJSONObject(position).getString("task_id")));
+                taskBTN.setText((responseJSON.getJSONArray("array").getJSONObject(position).getString("task_name")) + taskBTN.getId());
+
+            } catch (JSONException e){
+                System.out.println(e.getMessage());
+            }
+
 
         }
 

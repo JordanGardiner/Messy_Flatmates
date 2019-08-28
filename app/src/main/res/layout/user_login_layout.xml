@@ -5,13 +5,18 @@
     android:id="@+id/user_loginConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
     android:clickable="false"
     android:focusableInTouchMode="false"
     tools:context=".Fragments.User_login_fragment">
 
     <!-- TODO: Update blank fragment layout -->
 
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/login_background"
+    android:scaleType="fitXY"
+    />
 
     <Button
         android:id="@+id/login_homeLoginBtn"
